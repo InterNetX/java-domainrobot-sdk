@@ -137,19 +137,18 @@
 								<phase>generate-sources</phase>
 								<configuration>
 									<inputSpec>https://raw.githubusercontent.com/InterNetX/internetx-swagger-files/master/src/domainrobot.json</inputSpec>
-									<language>dart</language>
-									<output>dart</output>
+									<language>java</language>
+									<output>java</output>
 									<addCompileSourceRoot>false</addCompileSourceRoot>
 									<generateApis>false</generateApis>
 									<generateApiTests>false</generateApiTests>
 									<generateApiDocumentation>false</generateApiDocumentation>
 									<generateModels>true</generateModels>
 									<generateModelTests>false</generateModelTests>
-									<generateModelDocumentation>true</generateModelDocumentation>
+									<generateModelDocumentation>false</generateModelDocumentation>
 									<generateSupportingFiles>false</generateSupportingFiles>
 									<modelPackage>org.domainrobot.java_domainrobot_sdk.models.generated</modelPackage>
 									<apiPackage>org.domainrobot</apiPackage>
-									
 									<configOptions>
 										<sourceFolder>/</sourceFolder>
 										<useBeanValidation>true</useBeanValidation>
