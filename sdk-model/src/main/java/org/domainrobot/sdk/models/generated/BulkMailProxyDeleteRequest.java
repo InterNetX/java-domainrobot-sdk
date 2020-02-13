@@ -30,7 +30,7 @@ import javax.validation.Valid;
 /**
  * BulkMailProxyDeleteRequest
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-02-13T09:53:42.259+01:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-02-13T13:06:11.008+01:00")
 public class BulkMailProxyDeleteRequest {
   @JsonProperty("objects")
   private List<MailProxy> objects = null;

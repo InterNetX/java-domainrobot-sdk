@@ -26,7 +26,7 @@ import javax.validation.Valid;
 /**
  * DomainParkingExtensions
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-02-13T09:53:42.259+01:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-02-13T13:06:11.008+01:00")
 public class DomainParkingExtensions {
   @JsonProperty("parkingCategory")
   private String parkingCategory = null;

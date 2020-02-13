@@ -1,15 +1,16 @@
 package org.domainrobot.sdk.client.clients;
 
 import java.io.IOException;
+import java.util.Map;
 
 import org.domainrobot.sdk.models.DomainrobotApiException;
 import org.domainrobot.sdk.models.generated.Certificate;
 import org.domainrobot.sdk.models.generated.CertificateData;
-import org.domainrobot.sdk.models.generated.JsonResponseData;
+import org.domainrobot.sdk.models.generated.JsonResponseDataCertificate;
+import org.domainrobot.sdk.models.generated.JsonResponseDataCertificateData;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
-import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
@@ -36,19 +37,17 @@ public class CertificateClient extends AbstractClient {
 	 * @return
 	 * @throws IOException
 	 */
-	public JsonResponseData realtime(Certificate body, MultiValueMap<String, String> customHeaders) throws DomainrobotApiException, IOException {
-		RequestEntity<Certificate> request = buildRequestEntity(
-			body,
-			HttpMethod.POST,
-			baseUrl + "/certificate/realtime",
-			customHeaders);
-		ResponseEntity<JsonResponseData> response = null;
+	public Certificate realtime(Certificate body, Map<String, String> customHeaders)
+			throws DomainrobotApiException, IOException {
+		RequestEntity<Certificate> request = buildRequestEntity(body, HttpMethod.POST,
+				baseUrl + "/certificate/realtime", customHeaders);
+		ResponseEntity<JsonResponseDataCertificate> response = null;
 		try {
-			response = template.exchange(request, JsonResponseData.class);
-		} catch(HttpClientErrorException e) {
+			response = template.exchange(request, JsonResponseDataCertificate.class);
+		} catch (HttpClientErrorException e) {
 			handleException(e);
 		}
-		return response.getBody();
+		return response.getBody().getData().get(0);
 	}
 
 	/**
@@ -56,19 +55,17 @@ public class CertificateClient extends AbstractClient {
 	 * @return
 	 * @throws IOException
 	 */
-	public JsonResponseData prepareOrder(CertificateData body, MultiValueMap<String, String> customHeaders) throws DomainrobotApiException, IOException {
-		RequestEntity<CertificateData> request = buildRequestEntity(
-			body,
-			HttpMethod.POST,
-			baseUrl + "/certificate/prepareOrder",
-			customHeaders);
-		ResponseEntity<JsonResponseData> response = null;
+	public CertificateData prepareOrder(CertificateData body, Map<String, String> customHeaders)
+			throws DomainrobotApiException, IOException {
+		RequestEntity<CertificateData> request = buildRequestEntity(body, HttpMethod.POST,
+				baseUrl + "/certificate/prepareOrder", customHeaders);
+		ResponseEntity<JsonResponseDataCertificateData> response = null;
 		try {
-			response = template.exchange(request, JsonResponseData.class);
-		} catch(HttpClientErrorException e) {
+			response = template.exchange(request, JsonResponseDataCertificateData.class);
+		} catch (HttpClientErrorException e) {
 			handleException(e);
 		}
-		return response.getBody();
+		return response.getBody().getData().get(0);
 	}
 
 }

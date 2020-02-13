@@ -1,16 +1,12 @@
 package org.domainrobot.sdk.client;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.domainrobot.sdk.client.clients.CertificateClient;
 import org.domainrobot.sdk.client.clients.DomainStudioClient;
-import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
  * 
@@ -32,7 +28,8 @@ public class Domainrobot {
 
 	/**
 	 * <p>
-	 * Creates a new instance of the domainrobot provider, that gives access to the json api.
+	 * Creates a new instance of the domainrobot provider, that gives access to the
+	 * json api.
 	 * </p>
 	 * <p>
 	 * You can use one of the following base urls :
@@ -43,10 +40,10 @@ public class Domainrobot {
 	 * <b>Note:</b> Consider that each system has normally their own credentials!
 	 * </p>
 	 * 
-	 * @param user : The user for the api
-	 * @param context : The context for the user. Normally "4"
+	 * @param user     : The user for the api
+	 * @param context  : The context for the user. Normally "4"
 	 * @param password : The password of the user
-	 * @param baseUrl : The base url for the api
+	 * @param baseUrl  : The base url for the api
 	 */
 	public Domainrobot(String user, String context, String password, String baseUrl) {
 		String packageVersion = getClass().getPackage().getImplementationVersion();
@@ -78,16 +75,7 @@ public class Domainrobot {
 	private RestTemplate getRestTemplate() {
 		RestTemplate template = new RestTemplate();
 		List<HttpMessageConverter<?>> converters = template.getMessageConverters();
-		for(HttpMessageConverter<?> converter : converters) {
-			if(converter instanceof MappingJackson2HttpMessageConverter) {
-				MappingJackson2HttpMessageConverter jsonConverter = (MappingJackson2HttpMessageConverter) converter;
-				jsonConverter.setObjectMapper(new ObjectMapper());
-				List<MediaType> mediaTypes = new ArrayList<MediaType>();
-				mediaTypes.add(new MediaType("application", "json"));
-				mediaTypes.add(new MediaType("text", "javascript"));
-				jsonConverter.setSupportedMediaTypes(mediaTypes);
-			}
-		}
+		converters.add(new MappingJackson2HttpMessageConverter());
 		return template;
 	}
 

@@ -6,8 +6,9 @@ A java package for easy integration of the **Domainrobot API** powered by [Inter
 
 1. [Preamble](#preamble)
 2. [Install And Import](#install-and-import)
+   * [Download repository](#download-repository)
+   * [Install to local repository](#install-to-local-repository)
    * [Pom](#pom)
-   * [Import](#import)
 3. [Usage](#usage)
    * [Provider](#provider)
    * [Supported API calls](#supported-api-calls)
@@ -22,14 +23,15 @@ This Maven package is not available via known repositories. It must be manually 
 
 ## Install And Import
 
-### Download or build .jar files
+### Download repository
 
-Download the .jar files from the current release from Github or build it on your own with Maven.
+Download the code from the current release on the [release page](https://github.com/InterNetX/java-domainrobot-sdk/releases).
 
 ### Install to local repository
 
 ```bash
-mvn install:install-file -Dfile=$pathToFile -DgroupId=org.domainrobot -DartifactId=sdk -Dversion=0.1.0 -Dpackaging=jar
+cd /path/to/package
+mvn install
 ```
 
 ### Pom
@@ -39,24 +41,16 @@ Update pom.xml and add the following line to your dependencies.
 ```xml
 <dependency>
     <groupId>org.domainrobot</groupId>
-    <artifactId>sdk</artifactId>
+    <artifactId>sdk-client</artifactId>
     <version>0.1.0</version>
 </dependency>
-```
-
-### Import
-
-Import the package with:
-
-```java
-import org.domainrobot.java_domainrobot_sdk.Domainrobot;
 ```
 
 ## Usage
 
 ### Provider
 
-The package contains a [DomainRobot](/src/main/java/org/domainrobot/java_domainrobot_sdk/Domainrobot.java) that is the main access to the api. Instantiate the provider with your api credentials and the matching baseUrl of the api.
+The package contains a [Domainrobot](/src/main/java/org/domainrobot/java_domainrobot_sdk/Domainrobot.java) class that is the main access to the api. Instantiate the class with your api credentials and the matching baseUrl of the api.
 
 * Productive System: <https://api.autodns.com/v1>
 * Demo System: <https://api.demo.autodns.com/v1>
@@ -74,14 +68,14 @@ Domainrobot sdk = Domainrobot(userName,password,context,baseUrl);
 #### Domainstudio tasks
 
 ```java
-JsonResponseData search(DomainEnvelopeSearchRequest body, MultiValueMap<String, String> customHeaders, MultiValueMap<String, String> queryParameters);
+List<DomainEnvelope> search(DomainEnvelopeSearchRequest body, MultiValueMap<String, String> customHeaders);
 ```
 
 #### Certificate tasks
 
 ```java
-JsonResponseData realtime(Certificate body, MultiValueMap<String, String> customHeaders, MultiValueMap<String, String> queryParameters);
-JsonResponseData prepareOrder(CertificateData body, MultiValueMap<String, String> customHeaders, MultiValueMap<String, String> queryParameters);
+Certificate realtime(Certificate body, Map<String, String> customHeaders);
+CertificateData prepareOrder(CertificateData body, Map<String, String> customHeaders);
 ```
 
 ### Models
@@ -103,12 +97,18 @@ DomainStudioSources sources = new DomainStudioSources();
 sources.suggestion(new DomainStudioSourceSuggestion().max(5));
 body.searchToken("java").sources(sources);
 try {
-    JsonResponseData response = sdk.domainStudio.search(body, null);
-    System.out.println(response.getData());
+    List<DomainEnvelope> data = sdk.domainStudio.search(body, null);
+    for (DomainEnvelope d : data) {
+        System.out.println(d.getDomain());
+    }
 } catch(DomainrobotApiException e) {
-    // Handle API error
+    // Handle exception from the API
+    System.out.println(e.getMessage());
+    System.out.println(e.getErrorCode());
+    System.out.println(e.getBody());
 } catch(Exception e) {
     // Handle unexpected exception
+    System.out.println("Unknown error " + e);
 }
 ```
 

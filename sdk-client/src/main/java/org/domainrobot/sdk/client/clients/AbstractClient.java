@@ -3,6 +3,8 @@ package org.domainrobot.sdk.client.clients;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.domainrobot.sdk.client.JsonUtils;
 import org.domainrobot.sdk.models.DomainRobotHeaders;
@@ -49,16 +51,17 @@ public class AbstractClient {
 	String version;
 
 	/**
-	 * Merge the given headers with the basic headers needed for the domainrobot api.
+	 * Merge the given headers with the basic headers needed for the domainrobot
+	 * api.
 	 * 
 	 * @param headers
 	 * @return A merged MultiValueMap<String, String> containing the headers
 	 */
-	public MultiValueMap<String, String> mergeHeaders(MultiValueMap<String, String> headers) {
-		if(headers == null || headers.isEmpty()) {
+	public Map<String, String> mergeHeaders(Map<String, String> headers) {
+		if (headers == null || headers.isEmpty()) {
 			return getBasicHeaders();
 		}
-		headers.addAll(getBasicHeaders());
+		headers.putAll(getBasicHeaders());
 		return headers;
 	}
 
@@ -67,13 +70,13 @@ public class AbstractClient {
 	 * 
 	 * @return A MultiValueMap<String, String> containing the headers
 	 */
-	public MultiValueMap<String, String> getBasicHeaders() {
-		MultiValueMap<String, String> headers = new LinkedMultiValueMap<String, String>();
-		headers.add(HttpHeaders.CONTENT_TYPE, "application/json");
-		headers.add(HttpHeaders.ACCEPT, "application/json");
-		headers.add(HttpHeaders.AUTHORIZATION, "Basic " + HttpHeaders.encodeBasicAuth(userName, password, null));
-		headers.add(DomainRobotHeaders.DOMAINROBOT_HEADER_CONTEXT, context);
-		headers.add(HttpHeaders.USER_AGENT, "JavaDomainrobotSdk/" + version);
+	public Map<String, String> getBasicHeaders() {
+		Map<String, String> headers = new HashMap<String, String>();
+		headers.put(HttpHeaders.CONTENT_TYPE, "application/json");
+		headers.put(HttpHeaders.ACCEPT, "application/json");
+		headers.put(HttpHeaders.AUTHORIZATION, "Basic " + HttpHeaders.encodeBasicAuth(userName, password, null));
+		headers.put(DomainRobotHeaders.DOMAINROBOT_HEADER_CONTEXT, context);
+		headers.put(HttpHeaders.USER_AGENT, "JavaDomainrobotSdk/" + version);
 		return headers;
 	}
 
@@ -87,17 +90,22 @@ public class AbstractClient {
 	 * @param customHeaders
 	 * @return Returns a RequestEntity with the type of the given body.
 	 */
-	public <T> RequestEntity<T> buildRequestEntity(T body, HttpMethod method, String url, MultiValueMap<String, String> customHeaders) {
+	public <T> RequestEntity<T> buildRequestEntity(T body, HttpMethod method, String url,
+			Map<String, String> customHeaders) {
 		URI uri = null;
 		try {
 			uri = new URI(url);
-		} catch(URISyntaxException e) {
+		} catch (URISyntaxException e) {
 			return null;
 		}
-		if(body == null) {
-			return new RequestEntity<T>(mergeHeaders(customHeaders), method, uri);
+
+		MultiValueMap<String, String> headers = new LinkedMultiValueMap<>();
+		headers.setAll(mergeHeaders(customHeaders));
+
+		if (body == null) {
+			return new RequestEntity<T>(headers, method, uri);
 		} else {
-			return new RequestEntity<T>(body, mergeHeaders(customHeaders), method, uri);
+			return new RequestEntity<T>(body, headers, method, uri);
 		}
 	}
 
