@@ -23,9 +23,6 @@ import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
-import javax.validation.constraints.*;
-
 import org.domainrobot.sdk.models.generated.BasicUser;
 import org.domainrobot.sdk.models.generated.CaCertificate;
 import org.domainrobot.sdk.models.generated.CertAuthentication;
@@ -39,13 +36,13 @@ import org.domainrobot.sdk.models.generated.SignatureHashAlgorithmConstants;
 import org.domainrobot.sdk.models.generated.SslContact;
 import org.domainrobot.sdk.models.generated.SubjectAlternativeName;
 import org.domainrobot.sdk.models.generated.TimePeriod;
-
+import javax.validation.constraints.*;
 import javax.validation.Valid;
 
 /**
  * Certificate
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-01-08T13:30:26.488+01:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-02-13T09:53:42.259+01:00")
 public class Certificate {
   @JsonProperty("created")
   private Date created = null;
@@ -130,6 +127,9 @@ public class Certificate {
 
   @JsonProperty("lastname")
   private String lastname = null;
+
+  @JsonProperty("technicalContactEmail")
+  private String technicalContactEmail = null;
 
   @JsonProperty("organizationUnitName")
   private String organizationUnitName = null;
@@ -654,7 +654,7 @@ public class Certificate {
    * The password that is to be used for the certificate download. Only for S/MIME!
    * @return password
   **/
- @Pattern(regexp="^[-a-zA-Z0-9 ]{8,32}$")  @ApiModelProperty(value = "The password that is to be used for the certificate download. Only for S/MIME!")
+ @Pattern(regexp="^[-a-zA-Z0-9]{8,32}$")  @ApiModelProperty(value = "The password that is to be used for the certificate download. Only for S/MIME!")
   public String getPassword() {
     return password;
   }
@@ -697,6 +697,24 @@ public class Certificate {
 
   public void setLastname(String lastname) {
     this.lastname = lastname;
+  }
+
+  public Certificate technicalContactEmail(String technicalContactEmail) {
+    this.technicalContactEmail = technicalContactEmail;
+    return this;
+  }
+
+   /**
+   * The technical contact email address. Only used in realtime orders!
+   * @return technicalContactEmail
+  **/
+  @ApiModelProperty(value = "The technical contact email address. Only used in realtime orders!")
+  public String getTechnicalContactEmail() {
+    return technicalContactEmail;
+  }
+
+  public void setTechnicalContactEmail(String technicalContactEmail) {
+    this.technicalContactEmail = technicalContactEmail;
   }
 
   public Certificate organizationUnitName(String organizationUnitName) {
@@ -865,6 +883,7 @@ public class Certificate {
         Objects.equals(this.password, certificate.password) &&
         Objects.equals(this.firstname, certificate.firstname) &&
         Objects.equals(this.lastname, certificate.lastname) &&
+        Objects.equals(this.technicalContactEmail, certificate.technicalContactEmail) &&
         Objects.equals(this.organizationUnitName, certificate.organizationUnitName) &&
         Objects.equals(this.authentication, certificate.authentication) &&
         Objects.equals(this.certificateTransparency, certificate.certificateTransparency) &&
@@ -876,7 +895,7 @@ public class Certificate {
 
   @Override
   public int hashCode() {
-    return Objects.hash(created, updated, owner, updater, extension, id, partnerOrderId, orderId, adminContact, technicalContact, name, lifetime, software, comment, csr, server, serialNumber, product, codeSigningType, certificateType, signatureHashAlgorithm, expire, subjectAlternativeNames, histories, certificationAuthority, password, firstname, lastname, organizationUnitName, authentication, certificateTransparency, certificateTransparencyPrivacy, domain, hasCsr, idn);
+    return Objects.hash(created, updated, owner, updater, extension, id, partnerOrderId, orderId, adminContact, technicalContact, name, lifetime, software, comment, csr, server, serialNumber, product, codeSigningType, certificateType, signatureHashAlgorithm, expire, subjectAlternativeNames, histories, certificationAuthority, password, firstname, lastname, technicalContactEmail, organizationUnitName, authentication, certificateTransparency, certificateTransparencyPrivacy, domain, hasCsr, idn);
   }
 
 
@@ -913,6 +932,7 @@ public class Certificate {
     sb.append("    password: ").append(toIndentedString(password)).append("\n");
     sb.append("    firstname: ").append(toIndentedString(firstname)).append("\n");
     sb.append("    lastname: ").append(toIndentedString(lastname)).append("\n");
+    sb.append("    technicalContactEmail: ").append(toIndentedString(technicalContactEmail)).append("\n");
     sb.append("    organizationUnitName: ").append(toIndentedString(organizationUnitName)).append("\n");
     sb.append("    authentication: ").append(toIndentedString(authentication)).append("\n");
     sb.append("    certificateTransparency: ").append(toIndentedString(certificateTransparency)).append("\n");

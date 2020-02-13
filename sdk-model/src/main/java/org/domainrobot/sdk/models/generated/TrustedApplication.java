@@ -21,20 +21,17 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.Date;
-
-import javax.validation.constraints.*;
-
 import org.domainrobot.sdk.models.generated.Application;
 import org.domainrobot.sdk.models.generated.BasicUser;
 import org.domainrobot.sdk.models.generated.IpRestrictions;
 import org.domainrobot.sdk.models.generated.TrustedApplicationFunctions;
-
+import javax.validation.constraints.*;
 import javax.validation.Valid;
 
 /**
  * TrustedApplication
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-01-08T13:30:26.488+01:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-02-13T09:53:42.259+01:00")
 public class TrustedApplication {
   @JsonProperty("created")
   private Date created = null;

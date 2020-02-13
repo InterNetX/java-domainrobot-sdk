@@ -20,21 +20,20 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-
-import javax.validation.constraints.*;
-
+import org.domainrobot.sdk.models.generated.DomainStudioSourceCustom;
 import org.domainrobot.sdk.models.generated.DomainStudioSourceGeo;
 import org.domainrobot.sdk.models.generated.DomainStudioSourceInitial;
 import org.domainrobot.sdk.models.generated.DomainStudioSourcePremium;
+import org.domainrobot.sdk.models.generated.DomainStudioSourceRecommended;
 import org.domainrobot.sdk.models.generated.DomainStudioSourceSimilar;
 import org.domainrobot.sdk.models.generated.DomainStudioSourceSuggestion;
-
+import javax.validation.constraints.*;
 import javax.validation.Valid;
 
 /**
  * DomainStudioSources
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-01-08T13:30:26.488+01:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-02-13T09:53:42.259+01:00")
 public class DomainStudioSources {
   @JsonProperty("initial")
   private DomainStudioSourceInitial initial = null;
@@ -52,7 +51,10 @@ public class DomainStudioSources {
   private DomainStudioSourceSimilar similar = null;
 
   @JsonProperty("recommended")
-  private DomainStudioSourceSimilar recommended = null;
+  private DomainStudioSourceRecommended recommended = null;
+
+  @JsonProperty("custom")
+  private DomainStudioSourceCustom custom = null;
 
   public DomainStudioSources initial(DomainStudioSourceInitial initial) {
     this.initial = initial;
@@ -149,7 +151,7 @@ public class DomainStudioSources {
     this.similar = similar;
   }
 
-  public DomainStudioSources recommended(DomainStudioSourceSimilar recommended) {
+  public DomainStudioSources recommended(DomainStudioSourceRecommended recommended) {
     this.recommended = recommended;
     return this;
   }
@@ -160,12 +162,31 @@ public class DomainStudioSources {
   **/
   @Valid
   @ApiModelProperty(value = "The configuration for the recommended source")
-  public DomainStudioSourceSimilar getRecommended() {
+  public DomainStudioSourceRecommended getRecommended() {
     return recommended;
   }
 
-  public void setRecommended(DomainStudioSourceSimilar recommended) {
+  public void setRecommended(DomainStudioSourceRecommended recommended) {
     this.recommended = recommended;
+  }
+
+  public DomainStudioSources custom(DomainStudioSourceCustom custom) {
+    this.custom = custom;
+    return this;
+  }
+
+   /**
+   * The configuration for the custom source
+   * @return custom
+  **/
+  @Valid
+  @ApiModelProperty(value = "The configuration for the custom source")
+  public DomainStudioSourceCustom getCustom() {
+    return custom;
+  }
+
+  public void setCustom(DomainStudioSourceCustom custom) {
+    this.custom = custom;
   }
 
 
@@ -183,12 +204,13 @@ public class DomainStudioSources {
         Objects.equals(this.premium, domainStudioSources.premium) &&
         Objects.equals(this.geo, domainStudioSources.geo) &&
         Objects.equals(this.similar, domainStudioSources.similar) &&
-        Objects.equals(this.recommended, domainStudioSources.recommended);
+        Objects.equals(this.recommended, domainStudioSources.recommended) &&
+        Objects.equals(this.custom, domainStudioSources.custom);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(initial, suggestion, premium, geo, similar, recommended);
+    return Objects.hash(initial, suggestion, premium, geo, similar, recommended, custom);
   }
 
 
@@ -203,6 +225,7 @@ public class DomainStudioSources {
     sb.append("    geo: ").append(toIndentedString(geo)).append("\n");
     sb.append("    similar: ").append(toIndentedString(similar)).append("\n");
     sb.append("    recommended: ").append(toIndentedString(recommended)).append("\n");
+    sb.append("    custom: ").append(toIndentedString(custom)).append("\n");
     sb.append("}");
     return sb.toString();
   }

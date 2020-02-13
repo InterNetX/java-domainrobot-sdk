@@ -27,7 +27,7 @@ import javax.validation.Valid;
 /**
  * Document
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-01-08T13:30:26.488+01:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-02-13T09:53:42.259+01:00")
 public class Document {
   @JsonProperty("created")
   private Date created = null;
@@ -103,10 +103,10 @@ public class Document {
   }
 
    /**
-   * Lorem Ipsum
+   * Get id
    * @return id
   **/
-  @ApiModelProperty(value = "Lorem Ipsum")
+  @ApiModelProperty(value = "")
   public Long getId() {
     return id;
   }
@@ -121,10 +121,10 @@ public class Document {
   }
 
    /**
-   * Lorem Ipsum
+   * Get comment
    * @return comment
   **/
-  @ApiModelProperty(value = "Lorem Ipsum")
+  @ApiModelProperty(value = "")
   public String getComment() {
     return comment;
   }
@@ -139,10 +139,10 @@ public class Document {
   }
 
    /**
-   * Lorem Ipsum
+   * Get type
    * @return type
   **/
-  @ApiModelProperty(value = "Lorem Ipsum")
+  @ApiModelProperty(value = "")
   public String getType() {
     return type;
   }
@@ -157,10 +157,10 @@ public class Document {
   }
 
    /**
-   * Lorem Ipsum
+   * Get mimeType
    * @return mimeType
   **/
-  @ApiModelProperty(value = "Lorem Ipsum")
+  @ApiModelProperty(value = "")
   public String getMimeType() {
     return mimeType;
   }
@@ -175,10 +175,10 @@ public class Document {
   }
 
    /**
-   * Lorem Ipsum
+   * Get data
    * @return data
   **/
-  @ApiModelProperty(value = "Lorem Ipsum")
+  @ApiModelProperty(value = "")
   public String getData() {
     return data;
   }
@@ -193,10 +193,10 @@ public class Document {
   }
 
    /**
-   * Lorem Ipsum
+   * Get size
    * @return size
   **/
-  @ApiModelProperty(value = "Lorem Ipsum")
+  @ApiModelProperty(value = "")
   public Long getSize() {
     return size;
   }
@@ -211,10 +211,10 @@ public class Document {
   }
 
    /**
-   * Lorem Ipsum
+   * Get name
    * @return name
   **/
-  @ApiModelProperty(value = "Lorem Ipsum")
+  @ApiModelProperty(value = "")
   public String getName() {
     return name;
   }
@@ -229,10 +229,10 @@ public class Document {
   }
 
    /**
-   * Lorem Ipsum
+   * Get link
    * @return link
   **/
-  @ApiModelProperty(value = "Lorem Ipsum")
+  @ApiModelProperty(value = "")
   public String getLink() {
     return link;
   }

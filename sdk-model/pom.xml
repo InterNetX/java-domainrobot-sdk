@@ -138,7 +138,7 @@
 								<configuration>
 									<inputSpec>https://raw.githubusercontent.com/InterNetX/internetx-swagger-files/master/src/domainrobot.json</inputSpec>
 									<language>java</language>
-									<output>java</output>
+									<output>src/main/java</output>
 									<addCompileSourceRoot>false</addCompileSourceRoot>
 									<generateApis>false</generateApis>
 									<generateApiTests>false</generateApiTests>
@@ -147,8 +147,9 @@
 									<generateModelTests>false</generateModelTests>
 									<generateModelDocumentation>false</generateModelDocumentation>
 									<generateSupportingFiles>false</generateSupportingFiles>
-									<modelPackage>org.domainrobot.java_domainrobot_sdk.models.generated</modelPackage>
+									<modelPackage>org.domainrobot.sdk.models.generated</modelPackage>
 									<apiPackage>org.domainrobot</apiPackage>
+									<library>feign</library>
 									<configOptions>
 										<sourceFolder>/</sourceFolder>
 										<useBeanValidation>true</useBeanValidation>

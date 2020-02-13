@@ -22,20 +22,17 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.validation.constraints.*;
-
 import org.domainrobot.sdk.models.generated.CertAuthentication;
 import org.domainrobot.sdk.models.generated.CertificateHistory;
 import org.domainrobot.sdk.models.generated.CsrHashAlgorithmConstants;
 import org.domainrobot.sdk.models.generated.SignatureHashAlgorithmConstants;
-
+import javax.validation.constraints.*;
 import javax.validation.Valid;
 
 /**
  * CertificateData
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-01-08T13:30:26.488+01:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-02-13T09:53:42.259+01:00")
 public class CertificateData {
   @JsonProperty("plain")
   private String plain = null;
@@ -90,6 +87,9 @@ public class CertificateData {
 
   @JsonProperty("checkCaa")
   private Boolean checkCaa = null;
+
+  @JsonProperty("businessCase")
+  private String businessCase = null;
 
   public CertificateData plain(String plain) {
     this.plain = plain;
@@ -443,6 +443,24 @@ public class CertificateData {
     this.checkCaa = checkCaa;
   }
 
+  public CertificateData businessCase(String businessCase) {
+    this.businessCase = businessCase;
+    return this;
+  }
+
+   /**
+   * Describes the business case (CREATE, RENEW, REISSUE, DELETE) for which preparation is to be performed.
+   * @return businessCase
+  **/
+  @ApiModelProperty(value = "Describes the business case (CREATE, RENEW, REISSUE, DELETE) for which preparation is to be performed.")
+  public String getBusinessCase() {
+    return businessCase;
+  }
+
+  public void setBusinessCase(String businessCase) {
+    this.businessCase = businessCase;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -470,12 +488,13 @@ public class CertificateData {
         Objects.equals(this.algorithm, certificateData.algorithm) &&
         Objects.equals(this.signatureHashAlgorithm, certificateData.signatureHashAlgorithm) &&
         Objects.equals(this.idn, certificateData.idn) &&
-        Objects.equals(this.checkCaa, certificateData.checkCaa);
+        Objects.equals(this.checkCaa, certificateData.checkCaa) &&
+        Objects.equals(this.businessCase, certificateData.businessCase);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(plain, name, san, histories, keySize, countryCode, challengePassword, state, city, organization, organizationUnit, email, product, authentication, algorithm, signatureHashAlgorithm, idn, checkCaa);
+    return Objects.hash(plain, name, san, histories, keySize, countryCode, challengePassword, state, city, organization, organizationUnit, email, product, authentication, algorithm, signatureHashAlgorithm, idn, checkCaa, businessCase);
   }
 
 
@@ -502,6 +521,7 @@ public class CertificateData {
     sb.append("    signatureHashAlgorithm: ").append(toIndentedString(signatureHashAlgorithm)).append("\n");
     sb.append("    idn: ").append(toIndentedString(idn)).append("\n");
     sb.append("    checkCaa: ").append(toIndentedString(checkCaa)).append("\n");
+    sb.append("    businessCase: ").append(toIndentedString(businessCase)).append("\n");
     sb.append("}");
     return sb.toString();
   }

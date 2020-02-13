@@ -20,24 +20,23 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-
-import javax.validation.constraints.*;
-
+import java.util.ArrayList;
+import java.util.List;
 import org.domainrobot.sdk.models.generated.Job;
-import org.domainrobot.sdk.models.generated.ResponseObject;
-
+import org.domainrobot.sdk.models.generated.NiccomLog;
+import javax.validation.constraints.*;
 import javax.validation.Valid;
 
 /**
  * ObjectJob
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-01-08T13:30:26.488+01:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-02-13T09:53:42.259+01:00")
 public class ObjectJob {
   @JsonProperty("job")
   private Job job = null;
 
   @JsonProperty("object")
-  private ResponseObject object = null;
+  private List<NiccomLog> object = null;
 
   public ObjectJob job(Job job) {
     this.job = job;
@@ -58,8 +57,16 @@ public class ObjectJob {
     this.job = job;
   }
 
-  public ObjectJob object(ResponseObject object) {
+  public ObjectJob object(List<NiccomLog> object) {
     this.object = object;
+    return this;
+  }
+
+  public ObjectJob addObjectItem(NiccomLog objectItem) {
+    if (this.object == null) {
+      this.object = new ArrayList<NiccomLog>();
+    }
+    this.object.add(objectItem);
     return this;
   }
 
@@ -69,11 +76,11 @@ public class ObjectJob {
   **/
   @Valid
   @ApiModelProperty(value = "The object of the job or notify.")
-  public ResponseObject getObject() {
+  public List<NiccomLog> getObject() {
     return object;
   }
 
-  public void setObject(ResponseObject object) {
+  public void setObject(List<NiccomLog> object) {
     this.object = object;
   }
 

@@ -23,17 +23,14 @@ import io.swagger.annotations.ApiModelProperty;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import javax.validation.constraints.*;
-
 import org.domainrobot.sdk.models.generated.ServiceEntity;
-
+import javax.validation.constraints.*;
 import javax.validation.Valid;
 
 /**
  * PriceServiceEntity
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-01-08T13:30:26.488+01:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-02-13T09:53:42.259+01:00")
 public class PriceServiceEntity {
   @JsonProperty("configuration")
   private Map<String, Object> _configuration = null;

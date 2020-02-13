@@ -22,23 +22,23 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.validation.constraints.*;
-
 import org.domainrobot.sdk.models.generated.DomainEnvelopeSearchService;
-
+import javax.validation.constraints.*;
 import javax.validation.Valid;
 
 /**
  * DomainStudioSourceSimilar
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-01-08T13:30:26.488+01:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-02-13T09:53:42.259+01:00")
 public class DomainStudioSourceSimilar {
   @JsonProperty("services")
   private List<DomainEnvelopeSearchService> services = null;
 
   @JsonProperty("max")
   private Integer max = null;
+
+  @JsonProperty("tlds")
+  private List<String> tlds = null;
 
   public DomainStudioSourceSimilar services(List<DomainEnvelopeSearchService> services) {
     this.services = services;
@@ -85,6 +85,32 @@ public class DomainStudioSourceSimilar {
     this.max = max;
   }
 
+  public DomainStudioSourceSimilar tlds(List<String> tlds) {
+    this.tlds = tlds;
+    return this;
+  }
+
+  public DomainStudioSourceSimilar addTldsItem(String tldsItem) {
+    if (this.tlds == null) {
+      this.tlds = new ArrayList<String>();
+    }
+    this.tlds.add(tldsItem);
+    return this;
+  }
+
+   /**
+   * Selected tlds
+   * @return tlds
+  **/
+  @ApiModelProperty(value = "Selected tlds")
+  public List<String> getTlds() {
+    return tlds;
+  }
+
+  public void setTlds(List<String> tlds) {
+    this.tlds = tlds;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -96,12 +122,13 @@ public class DomainStudioSourceSimilar {
     }
     DomainStudioSourceSimilar domainStudioSourceSimilar = (DomainStudioSourceSimilar) o;
     return Objects.equals(this.services, domainStudioSourceSimilar.services) &&
-        Objects.equals(this.max, domainStudioSourceSimilar.max);
+        Objects.equals(this.max, domainStudioSourceSimilar.max) &&
+        Objects.equals(this.tlds, domainStudioSourceSimilar.tlds);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(services, max);
+    return Objects.hash(services, max, tlds);
   }
 
 
@@ -112,6 +139,7 @@ public class DomainStudioSourceSimilar {
     
     sb.append("    services: ").append(toIndentedString(services)).append("\n");
     sb.append("    max: ").append(toIndentedString(max)).append("\n");
+    sb.append("    tlds: ").append(toIndentedString(tlds)).append("\n");
     sb.append("}");
     return sb.toString();
   }

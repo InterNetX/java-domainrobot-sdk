@@ -21,20 +21,17 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.Date;
-
-import javax.validation.constraints.*;
-
 import org.domainrobot.sdk.models.generated.BasicUser;
 import org.domainrobot.sdk.models.generated.CancelationTypeConstants;
 import org.domainrobot.sdk.models.generated.ExecutionTypeConstants;
 import org.domainrobot.sdk.models.generated.RegistryStatusConstants;
-
+import javax.validation.constraints.*;
 import javax.validation.Valid;
 
 /**
  * DomainCancelation
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-01-08T13:30:26.488+01:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-02-13T09:53:42.259+01:00")
 public class DomainCancelation {
   @JsonProperty("created")
   private Date created = null;
@@ -157,11 +154,11 @@ public class DomainCancelation {
   }
 
    /**
-   * Lorem Ipsum
+   * Get domain
    * @return domain
   **/
   @NotNull
-  @ApiModelProperty(required = true, value = "Lorem Ipsum")
+  @ApiModelProperty(required = true, value = "")
   public String getDomain() {
     return domain;
   }
@@ -196,10 +193,10 @@ public class DomainCancelation {
   }
 
    /**
-   * Lorem Ipsum
+   * Get gainingRegistrar
    * @return gainingRegistrar
   **/
-  @ApiModelProperty(value = "Lorem Ipsum")
+  @ApiModelProperty(value = "")
   public String getGainingRegistrar() {
     return gainingRegistrar;
   }
@@ -214,10 +211,10 @@ public class DomainCancelation {
   }
 
    /**
-   * Lorem Ipsum
+   * Get disconnect
    * @return disconnect
   **/
-  @ApiModelProperty(value = "Lorem Ipsum")
+  @ApiModelProperty(value = "")
   public Boolean isDisconnect() {
     return disconnect;
   }
@@ -250,10 +247,10 @@ public class DomainCancelation {
   }
 
    /**
-   * Lorem Ipsum
+   * Get logId
    * @return logId
   **/
-  @ApiModelProperty(value = "Lorem Ipsum")
+  @ApiModelProperty(value = "")
   public Long getLogId() {
     return logId;
   }
@@ -268,11 +265,11 @@ public class DomainCancelation {
   }
 
    /**
-   * Lorem Ipsum
+   * Get registryStatus
    * @return registryStatus
   **/
   @Valid
-  @ApiModelProperty(value = "Lorem Ipsum")
+  @ApiModelProperty(value = "")
   public RegistryStatusConstants getRegistryStatus() {
     return registryStatus;
   }

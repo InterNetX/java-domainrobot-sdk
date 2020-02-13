@@ -36,7 +36,9 @@ public enum DomainStudioDomainSource {
   
   SIMILAR("SIMILAR"),
   
-  RECOMMENDED("RECOMMENDED");
+  RECOMMENDED("RECOMMENDED"),
+  
+  CUSTOM("CUSTOM");
 
   private String value;
 

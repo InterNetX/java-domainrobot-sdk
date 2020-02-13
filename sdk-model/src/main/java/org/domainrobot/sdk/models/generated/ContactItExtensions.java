@@ -20,18 +20,19 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import org.domainrobot.sdk.models.generated.ItEntityTypeConstants;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
 
 /**
  * ContactItExtensions
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-01-08T13:30:26.488+01:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-02-13T09:53:42.259+01:00")
 public class ContactItExtensions {
   @JsonProperty("entityType")
-  private Integer entityType = null;
+  private ItEntityTypeConstants entityType = null;
 
-  public ContactItExtensions entityType(Integer entityType) {
+  public ContactItExtensions entityType(ItEntityTypeConstants entityType) {
     this.entityType = entityType;
     return this;
   }
@@ -40,12 +41,13 @@ public class ContactItExtensions {
    * The number of the matching entity.
    * @return entityType
   **/
+  @Valid
   @ApiModelProperty(value = "The number of the matching entity.")
-  public Integer getEntityType() {
+  public ItEntityTypeConstants getEntityType() {
     return entityType;
   }
 
-  public void setEntityType(Integer entityType) {
+  public void setEntityType(ItEntityTypeConstants entityType) {
     this.entityType = entityType;
   }
 

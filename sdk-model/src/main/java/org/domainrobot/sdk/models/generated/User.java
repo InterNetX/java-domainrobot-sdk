@@ -23,12 +23,10 @@ import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
-import javax.validation.constraints.*;
-
 import org.domainrobot.sdk.models.generated.AuthType;
 import org.domainrobot.sdk.models.generated.BasicCustomer;
 import org.domainrobot.sdk.models.generated.BasicUser;
+import org.domainrobot.sdk.models.generated.IpRestrictions;
 import org.domainrobot.sdk.models.generated.Subscription;
 import org.domainrobot.sdk.models.generated.TrustedApplication;
 import org.domainrobot.sdk.models.generated.User;
@@ -37,13 +35,13 @@ import org.domainrobot.sdk.models.generated.UserDetails;
 import org.domainrobot.sdk.models.generated.UserLock;
 import org.domainrobot.sdk.models.generated.UserProfileViews;
 import org.domainrobot.sdk.models.generated.VirtualNameServerGroup;
-
+import javax.validation.constraints.*;
 import javax.validation.Valid;
 
 /**
  * User
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-01-08T13:30:26.488+01:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-02-13T09:53:42.259+01:00")
 public class User {
   @JsonProperty("created")
   private Date created = null;
@@ -96,6 +94,9 @@ public class User {
   @JsonProperty("applications")
   private List<TrustedApplication> applications = null;
 
+  @JsonProperty("restrictions")
+  private IpRestrictions restrictions = null;
+
   @JsonProperty("user")
   private String user = null;
 
@@ -104,6 +105,9 @@ public class User {
 
   @JsonProperty("parent")
   private User parent = null;
+
+  @JsonProperty("directCustomer")
+  private Boolean directCustomer = null;
 
   public User created(Date created) {
     this.created = created;
@@ -456,6 +460,25 @@ public class User {
     this.applications = applications;
   }
 
+  public User restrictions(IpRestrictions restrictions) {
+    this.restrictions = restrictions;
+    return this;
+  }
+
+   /**
+   * The wrapper of the ip restrictions for the user.
+   * @return restrictions
+  **/
+  @Valid
+  @ApiModelProperty(value = "The wrapper of the ip restrictions for the user.")
+  public IpRestrictions getRestrictions() {
+    return restrictions;
+  }
+
+  public void setRestrictions(IpRestrictions restrictions) {
+    this.restrictions = restrictions;
+  }
+
   public User user(String user) {
     this.user = user;
     return this;
@@ -512,6 +535,24 @@ public class User {
     this.parent = parent;
   }
 
+  public User directCustomer(Boolean directCustomer) {
+    this.directCustomer = directCustomer;
+    return this;
+  }
+
+   /**
+   * Get directCustomer
+   * @return directCustomer
+  **/
+  @ApiModelProperty(value = "")
+  public Boolean isDirectCustomer() {
+    return directCustomer;
+  }
+
+  public void setDirectCustomer(Boolean directCustomer) {
+    this.directCustomer = directCustomer;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -539,14 +580,16 @@ public class User {
         Objects.equals(this.nameServerGroups, user.nameServerGroups) &&
         Objects.equals(this.subscriptions, user.subscriptions) &&
         Objects.equals(this.applications, user.applications) &&
+        Objects.equals(this.restrictions, user.restrictions) &&
         Objects.equals(this.user, user.user) &&
         Objects.equals(this.language, user.language) &&
-        Objects.equals(this.parent, user.parent);
+        Objects.equals(this.parent, user.parent) &&
+        Objects.equals(this.directCustomer, user.directCustomer);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(created, updated, context, password, defaultEmail, status, substatus, authType, details, lock, acls, profiles, ancestors, customer, nameServerGroups, subscriptions, applications, user, language, parent);
+    return Objects.hash(created, updated, context, password, defaultEmail, status, substatus, authType, details, lock, acls, profiles, ancestors, customer, nameServerGroups, subscriptions, applications, restrictions, user, language, parent, directCustomer);
   }
 
 
@@ -572,9 +615,11 @@ public class User {
     sb.append("    nameServerGroups: ").append(toIndentedString(nameServerGroups)).append("\n");
     sb.append("    subscriptions: ").append(toIndentedString(subscriptions)).append("\n");
     sb.append("    applications: ").append(toIndentedString(applications)).append("\n");
+    sb.append("    restrictions: ").append(toIndentedString(restrictions)).append("\n");
     sb.append("    user: ").append(toIndentedString(user)).append("\n");
     sb.append("    language: ").append(toIndentedString(language)).append("\n");
     sb.append("    parent: ").append(toIndentedString(parent)).append("\n");
+    sb.append("    directCustomer: ").append(toIndentedString(directCustomer)).append("\n");
     sb.append("}");
     return sb.toString();
   }

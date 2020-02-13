@@ -20,18 +20,15 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-
-import javax.validation.constraints.*;
-
 import org.domainrobot.sdk.models.generated.DomainStudioServiceStatus;
 import org.domainrobot.sdk.models.generated.PriceData;
-
+import javax.validation.constraints.*;
 import javax.validation.Valid;
 
 /**
  * PriceServiceData
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-01-08T13:30:26.488+01:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-02-13T09:53:42.259+01:00")
 public class PriceServiceData {
   @JsonProperty("debugTime")
   private Long debugTime = null;

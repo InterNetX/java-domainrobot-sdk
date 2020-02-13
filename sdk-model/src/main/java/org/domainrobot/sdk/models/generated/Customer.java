@@ -22,9 +22,6 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.validation.constraints.*;
-
 import org.domainrobot.sdk.models.generated.Account;
 import org.domainrobot.sdk.models.generated.BasicUser;
 import org.domainrobot.sdk.models.generated.Card;
@@ -35,13 +32,13 @@ import org.domainrobot.sdk.models.generated.GenderConstants;
 import org.domainrobot.sdk.models.generated.PaymentConstants;
 import org.domainrobot.sdk.models.generated.Phone;
 import org.domainrobot.sdk.models.generated.SEPAMandate;
-
+import javax.validation.constraints.*;
 import javax.validation.Valid;
 
 /**
  * Customer
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-01-08T13:30:26.488+01:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-02-13T09:53:42.259+01:00")
 public class Customer {
   @JsonProperty("number")
   private Long number = null;
@@ -80,7 +77,7 @@ public class Customer {
   private String country = null;
 
   @JsonProperty("phone")
-  private Phone phone = null;
+  private String phone = null;
 
   @JsonProperty("fax")
   private Phone fax = null;
@@ -139,11 +136,11 @@ public class Customer {
   }
 
    /**
-   * Lorem Ipsum
+   * Get number
    * @return number
   **/
   @NotNull
-  @ApiModelProperty(required = true, value = "Lorem Ipsum")
+  @ApiModelProperty(required = true, value = "")
   public Long getNumber() {
     return number;
   }
@@ -158,11 +155,11 @@ public class Customer {
   }
 
    /**
-   * Lorem Ipsum
+   * Get client
    * @return client
   **/
   @NotNull
- @Size(min=1,max=2147483647)  @ApiModelProperty(required = true, value = "Lorem Ipsum")
+ @Size(min=1,max=2147483647)  @ApiModelProperty(required = true, value = "")
   public String getClient() {
     return client;
   }
@@ -177,10 +174,10 @@ public class Customer {
   }
 
    /**
-   * Lorem Ipsum
+   * Get group
    * @return group
   **/
-  @ApiModelProperty(value = "Lorem Ipsum")
+  @ApiModelProperty(value = "")
   public Long getGroup() {
     return group;
   }
@@ -361,22 +358,21 @@ public class Customer {
     this.country = country;
   }
 
-  public Customer phone(Phone phone) {
+  public Customer phone(String phone) {
     this.phone = phone;
     return this;
   }
 
    /**
-   * The phone number.
+   * The phone number of the customer
    * @return phone
   **/
-  @Valid
-  @ApiModelProperty(value = "The phone number.")
-  public Phone getPhone() {
+  @ApiModelProperty(example = "+49-123-12345", value = "The phone number of the customer")
+  public String getPhone() {
     return phone;
   }
 
-  public void setPhone(Phone phone) {
+  public void setPhone(String phone) {
     this.phone = phone;
   }
 

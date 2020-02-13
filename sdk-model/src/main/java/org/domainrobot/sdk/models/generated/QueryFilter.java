@@ -22,19 +22,16 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.validation.constraints.*;
-
 import org.domainrobot.sdk.models.generated.ConditionType;
 import org.domainrobot.sdk.models.generated.Operator;
 import org.domainrobot.sdk.models.generated.QueryFilter;
-
+import javax.validation.constraints.*;
 import javax.validation.Valid;
 
 /**
  * QueryFilter
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-01-08T13:30:26.488+01:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-02-13T09:53:42.259+01:00")
 public class QueryFilter {
   @JsonProperty("key")
   private String key = null;
@@ -57,10 +54,10 @@ public class QueryFilter {
   }
 
    /**
-   * Lorem Ipsum
+   * Get key
    * @return key
   **/
-  @ApiModelProperty(value = "Lorem Ipsum")
+  @ApiModelProperty(value = "")
   public String getKey() {
     return key;
   }
@@ -75,10 +72,10 @@ public class QueryFilter {
   }
 
    /**
-   * Lorem Ipsum
+   * Get value
    * @return value
   **/
-  @ApiModelProperty(value = "Lorem Ipsum")
+  @ApiModelProperty(value = "")
   public String getValue() {
     return value;
   }
@@ -93,11 +90,11 @@ public class QueryFilter {
   }
 
    /**
-   * Lorem Ipsum
+   * Get operator
    * @return operator
   **/
   @Valid
-  @ApiModelProperty(value = "Lorem Ipsum")
+  @ApiModelProperty(value = "")
   public Operator getOperator() {
     return operator;
   }
@@ -112,11 +109,11 @@ public class QueryFilter {
   }
 
    /**
-   * Lorem Ipsum
+   * Get link
    * @return link
   **/
   @Valid
-  @ApiModelProperty(value = "Lorem Ipsum")
+  @ApiModelProperty(value = "")
   public ConditionType getLink() {
     return link;
   }
@@ -139,11 +136,11 @@ public class QueryFilter {
   }
 
    /**
-   * Lorem Ipsum
+   * Get filters
    * @return filters
   **/
   @Valid
-  @ApiModelProperty(value = "Lorem Ipsum")
+  @ApiModelProperty(value = "")
   public List<QueryFilter> getFilters() {
     return filters;
   }

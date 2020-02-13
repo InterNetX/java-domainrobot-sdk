@@ -23,22 +23,19 @@ import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
-import javax.validation.constraints.*;
-
 import org.domainrobot.sdk.models.generated.BasicUser;
 import org.domainrobot.sdk.models.generated.BillingObjectLimit;
 import org.domainrobot.sdk.models.generated.BillingStatus;
 import org.domainrobot.sdk.models.generated.PeriodicBilling;
 import org.domainrobot.sdk.models.generated.TimePeriod;
 import org.domainrobot.sdk.models.generated.UserAcl;
-
+import javax.validation.constraints.*;
 import javax.validation.Valid;
 
 /**
  * Subscription
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-01-08T13:30:26.488+01:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-02-13T09:53:42.259+01:00")
 public class Subscription {
   @JsonProperty("created")
   private Date created = null;

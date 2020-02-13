@@ -27,7 +27,7 @@ import javax.validation.Valid;
 /**
  * QueryView
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-01-08T13:30:26.488+01:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-02-13T09:53:42.259+01:00")
 public class QueryView {
   @JsonProperty("limit")
   private Integer limit = null;
@@ -50,10 +50,10 @@ public class QueryView {
   }
 
    /**
-   * Lorem Ipsum
+   * Get limit
    * @return limit
   **/
-  @ApiModelProperty(value = "Lorem Ipsum")
+  @ApiModelProperty(value = "")
   public Integer getLimit() {
     return limit;
   }
@@ -68,10 +68,10 @@ public class QueryView {
   }
 
    /**
-   * Lorem Ipsum
+   * Get offset
    * @return offset
   **/
-  @ApiModelProperty(value = "Lorem Ipsum")
+  @ApiModelProperty(value = "")
   public Integer getOffset() {
     return offset;
   }
@@ -86,10 +86,10 @@ public class QueryView {
   }
 
    /**
-   * Lorem Ipsum
+   * Get children
    * @return children
   **/
-  @ApiModelProperty(value = "Lorem Ipsum")
+  @ApiModelProperty(value = "")
   public Boolean isChildren() {
     return children;
   }
@@ -104,11 +104,11 @@ public class QueryView {
   }
 
    /**
-   * Lorem Ipsum
+   * Get from
    * @return from
   **/
   @Valid
-  @ApiModelProperty(value = "Lorem Ipsum")
+  @ApiModelProperty(value = "")
   public Date getFrom() {
     return from;
   }
@@ -123,11 +123,11 @@ public class QueryView {
   }
 
    /**
-   * Lorem Ipsum
+   * Get to
    * @return to
   **/
   @Valid
-  @ApiModelProperty(value = "Lorem Ipsum")
+  @ApiModelProperty(value = "")
   public Date getTo() {
     return to;
   }

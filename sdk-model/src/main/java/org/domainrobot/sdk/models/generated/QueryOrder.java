@@ -22,17 +22,14 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.validation.constraints.*;
-
 import org.domainrobot.sdk.models.generated.OrderType;
-
+import javax.validation.constraints.*;
 import javax.validation.Valid;
 
 /**
  * QueryOrder
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-01-08T13:30:26.488+01:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-02-13T09:53:42.259+01:00")
 public class QueryOrder {
   @JsonProperty("key")
   private String key = null;
@@ -49,10 +46,10 @@ public class QueryOrder {
   }
 
    /**
-   * Lorem Ipsum
+   * Get key
    * @return key
   **/
-  @ApiModelProperty(value = "Lorem Ipsum")
+  @ApiModelProperty(value = "")
   public String getKey() {
     return key;
   }
@@ -75,10 +72,10 @@ public class QueryOrder {
   }
 
    /**
-   * Lorem Ipsum
+   * Get ins
    * @return ins
   **/
-  @ApiModelProperty(value = "Lorem Ipsum")
+  @ApiModelProperty(value = "")
   public List<String> getIns() {
     return ins;
   }
@@ -93,11 +90,11 @@ public class QueryOrder {
   }
 
    /**
-   * Lorem Ipsum
+   * Get type
    * @return type
   **/
   @Valid
-  @ApiModelProperty(value = "Lorem Ipsum")
+  @ApiModelProperty(value = "")
   public OrderType getType() {
     return type;
   }

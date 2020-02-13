@@ -22,19 +22,16 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.validation.constraints.*;
-
 import org.domainrobot.sdk.models.generated.Message;
 import org.domainrobot.sdk.models.generated.ResponseObject;
 import org.domainrobot.sdk.models.generated.ResponseStatus;
-
+import javax.validation.constraints.*;
 import javax.validation.Valid;
 
 /**
  * JsonResponseData
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-01-08T13:30:26.488+01:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-02-13T09:53:42.259+01:00")
 public class JsonResponseData {
   @JsonProperty("stid")
   private String stid = null;

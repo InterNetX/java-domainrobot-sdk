@@ -22,9 +22,9 @@ This Maven package is not available via known repositories. It must be manually 
 
 ## Install And Import
 
-### Download .jar file
+### Download or build .jar files
 
-Download the current release from Github.
+Download the .jar files from the current release from Github or build it on your own with Maven.
 
 ### Install to local repository
 

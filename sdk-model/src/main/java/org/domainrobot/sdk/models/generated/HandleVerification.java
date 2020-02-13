@@ -23,21 +23,18 @@ import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
-import javax.validation.constraints.*;
-
 import org.domainrobot.sdk.models.generated.BasicUser;
 import org.domainrobot.sdk.models.generated.Contact;
 import org.domainrobot.sdk.models.generated.ContactVerificationDomain;
 import org.domainrobot.sdk.models.generated.ContactVerificationMessage;
 import org.domainrobot.sdk.models.generated.InetAddress;
-
+import javax.validation.constraints.*;
 import javax.validation.Valid;
 
 /**
  * HandleVerification
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-01-08T13:30:26.488+01:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-02-13T09:53:42.259+01:00")
 public class HandleVerification {
   @JsonProperty("created")
   private Date created = null;

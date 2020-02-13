@@ -2,7 +2,6 @@
 *.class
 
 .vscode
-.settings
 
 # Log file
 *.log

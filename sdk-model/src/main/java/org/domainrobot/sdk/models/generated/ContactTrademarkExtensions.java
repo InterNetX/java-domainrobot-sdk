@@ -27,7 +27,7 @@ import javax.validation.Valid;
 /**
  * ContactTrademarkExtensions
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-01-08T13:30:26.488+01:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-02-13T09:53:42.259+01:00")
 public class ContactTrademarkExtensions {
   @JsonProperty("name")
   private String name = null;

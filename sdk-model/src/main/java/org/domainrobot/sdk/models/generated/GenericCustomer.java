@@ -26,7 +26,7 @@ import javax.validation.Valid;
 /**
  * GenericCustomer
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-01-08T13:30:26.488+01:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-02-13T09:53:42.259+01:00")
 public class GenericCustomer {
   @JsonProperty("number")
   private Long number = null;
@@ -43,11 +43,11 @@ public class GenericCustomer {
   }
 
    /**
-   * Lorem Ipsum
+   * Get number
    * @return number
   **/
   @NotNull
-  @ApiModelProperty(required = true, value = "Lorem Ipsum")
+  @ApiModelProperty(required = true, value = "")
   public Long getNumber() {
     return number;
   }
@@ -62,11 +62,11 @@ public class GenericCustomer {
   }
 
    /**
-   * Lorem Ipsum
+   * Get client
    * @return client
   **/
   @NotNull
- @Size(min=1,max=2147483647)  @ApiModelProperty(required = true, value = "Lorem Ipsum")
+ @Size(min=1,max=2147483647)  @ApiModelProperty(required = true, value = "")
   public String getClient() {
     return client;
   }
@@ -81,10 +81,10 @@ public class GenericCustomer {
   }
 
    /**
-   * Lorem Ipsum
+   * Get group
    * @return group
   **/
-  @ApiModelProperty(value = "Lorem Ipsum")
+  @ApiModelProperty(value = "")
   public Long getGroup() {
     return group;
   }

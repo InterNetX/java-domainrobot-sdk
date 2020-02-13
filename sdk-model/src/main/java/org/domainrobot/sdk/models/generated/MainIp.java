@@ -26,7 +26,7 @@ import javax.validation.Valid;
 /**
  * MainIp
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-01-08T13:30:26.488+01:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-02-13T09:53:42.259+01:00")
 public class MainIp {
   @JsonProperty("address")
   private String address = null;
@@ -40,10 +40,10 @@ public class MainIp {
   }
 
    /**
-   * Lorem Ipsum
+   * Get address
    * @return address
   **/
-  @ApiModelProperty(example = "127.0.0.1", value = "Lorem Ipsum")
+  @ApiModelProperty(example = "127.0.0.1", value = "")
   public String getAddress() {
     return address;
   }

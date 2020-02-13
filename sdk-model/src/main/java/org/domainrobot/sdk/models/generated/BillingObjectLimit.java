@@ -27,7 +27,7 @@ import javax.validation.Valid;
 /**
  * BillingObjectLimit
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-01-08T13:30:26.488+01:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-02-13T09:53:42.259+01:00")
 public class BillingObjectLimit {
   @JsonProperty("created")
   private Date created = null;
@@ -94,10 +94,10 @@ public class BillingObjectLimit {
   }
 
    /**
-   * Lorem Ipsum
+   * Get articleLabel
    * @return articleLabel
   **/
-  @ApiModelProperty(value = "Lorem Ipsum")
+  @ApiModelProperty(value = "")
   public String getArticleLabel() {
     return articleLabel;
   }
@@ -112,10 +112,10 @@ public class BillingObjectLimit {
   }
 
    /**
-   * Lorem Ipsum
+   * Get limitSelf
    * @return limitSelf
   **/
-  @ApiModelProperty(value = "Lorem Ipsum")
+  @ApiModelProperty(value = "")
   public Integer getLimitSelf() {
     return limitSelf;
   }
@@ -130,10 +130,10 @@ public class BillingObjectLimit {
   }
 
    /**
-   * Lorem Ipsum
+   * Get limitChildren
    * @return limitChildren
   **/
-  @ApiModelProperty(value = "Lorem Ipsum")
+  @ApiModelProperty(value = "")
   public Integer getLimitChildren() {
     return limitChildren;
   }
@@ -148,10 +148,10 @@ public class BillingObjectLimit {
   }
 
    /**
-   * Lorem Ipsum
+   * Get articleTypeLabel
    * @return articleTypeLabel
   **/
-  @ApiModelProperty(value = "Lorem Ipsum")
+  @ApiModelProperty(value = "")
   public String getArticleTypeLabel() {
     return articleTypeLabel;
   }

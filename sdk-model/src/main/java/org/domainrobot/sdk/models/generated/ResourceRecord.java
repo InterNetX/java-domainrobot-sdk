@@ -26,7 +26,7 @@ import javax.validation.Valid;
 /**
  * ResourceRecord
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-01-08T13:30:26.488+01:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-02-13T09:53:42.259+01:00")
 public class ResourceRecord {
   @JsonProperty("name")
   private String name = null;
@@ -42,6 +42,9 @@ public class ResourceRecord {
 
   @JsonProperty("pref")
   private Integer pref = null;
+
+  @JsonProperty("raw")
+  private String raw = null;
 
   public ResourceRecord name(String name) {
     this.name = name;
@@ -135,6 +138,24 @@ public class ResourceRecord {
     this.pref = pref;
   }
 
+  public ResourceRecord raw(String raw) {
+    this.raw = raw;
+    return this;
+  }
+
+   /**
+   * The bind notation of the record. Only used by the zone stream task!
+   * @return raw
+  **/
+  @ApiModelProperty(value = "The bind notation of the record. Only used by the zone stream task!")
+  public String getRaw() {
+    return raw;
+  }
+
+  public void setRaw(String raw) {
+    this.raw = raw;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -149,12 +170,13 @@ public class ResourceRecord {
         Objects.equals(this.ttl, resourceRecord.ttl) &&
         Objects.equals(this.type, resourceRecord.type) &&
         Objects.equals(this.value, resourceRecord.value) &&
-        Objects.equals(this.pref, resourceRecord.pref);
+        Objects.equals(this.pref, resourceRecord.pref) &&
+        Objects.equals(this.raw, resourceRecord.raw);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, ttl, type, value, pref);
+    return Objects.hash(name, ttl, type, value, pref, raw);
   }
 
 
@@ -168,6 +190,7 @@ public class ResourceRecord {
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    value: ").append(toIndentedString(value)).append("\n");
     sb.append("    pref: ").append(toIndentedString(pref)).append("\n");
+    sb.append("    raw: ").append(toIndentedString(raw)).append("\n");
     sb.append("}");
     return sb.toString();
   }
