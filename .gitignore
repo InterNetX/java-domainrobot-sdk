@@ -12,6 +12,9 @@ local.properties
 *.class
 .project
 
+# Github
+.github
+
 # Visual Studio Code
 .vscode
 
