@@ -109,12 +109,19 @@ public class AbstractClient {
 		}
 	}
 
-	public void handleException(HttpClientErrorException e) throws DomainrobotApiException, IOException {
+	public void handleException(HttpClientErrorException e) throws DomainrobotApiException {
 		String bodyAsString = e.getResponseBodyAsString();
-		JsonResponseData body = JsonUtils.deserialize(bodyAsString.getBytes(), JsonResponseData.class);
-		String message = body.getMessages().get(0).getText();
-		String errorCode = body.getMessages().get(0).getCode();
-		String stid = body.getStid();
+		String message = "";
+		String errorCode = "";
+		String stid = "";
+		try {
+			JsonResponseData body = JsonUtils.deserialize(bodyAsString.getBytes(), JsonResponseData.class);
+			message = body.getMessages().get(0).getText();
+			errorCode = body.getMessages().get(0).getCode();
+			stid = body.getStid();
+		} catch (IOException ioException) {
+			// Can't parse the response body to JsonResponseData model
+		}
 
 		throw new DomainrobotApiException(message, bodyAsString, errorCode, stid,
 				e.getResponseHeaders().toSingleValueMap());

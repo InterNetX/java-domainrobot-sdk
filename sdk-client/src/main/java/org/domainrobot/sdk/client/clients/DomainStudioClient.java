@@ -1,6 +1,5 @@
 package org.domainrobot.sdk.client.clients;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -35,12 +34,25 @@ public class DomainStudioClient extends AbstractClient {
 	}
 
 	/**
+	 * Sends a domainstudio search request. <br>
+	 * <br>
+	 * <b>Note:</b> By default, search results are provided synchronously: the
+	 * search response contains all the additional data for each domain name
+	 * created. With the following header the asynchronous mode can be activated:
+	 * <br>
+	 * <br>
+	 * <b>X-Domainrobot-WS : ASYNC</b> <br>
+	 * <br>
+	 * The additional domain data will then be delivered via websocket. <br>
+	 * See the official <a href=
+	 * "https://help.internetx.com/display/APIADDITIONALEN/DomainStudio+Guide">domainstudio
+	 * guide</a> for more information.
 	 * 
-	 * @return
-	 * @throws IOException
+	 * @return List of DomainEnvelope
+	 * @throws DomainrobotApiException
 	 */
 	public List<DomainEnvelope> search(DomainEnvelopeSearchRequest body, Map<String, String> customHeaders)
-			throws DomainrobotApiException, IOException {
+			throws DomainrobotApiException {
 		RequestEntity<DomainEnvelopeSearchRequest> request = buildRequestEntity(body, HttpMethod.POST,
 				baseUrl + "/domainstudio", customHeaders);
 		ResponseEntity<JsonResponseDataDomainEnvelope> response = null;

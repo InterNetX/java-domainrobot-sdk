@@ -1,6 +1,5 @@
 package org.domainrobot.sdk.client.clients;
 
-import java.io.IOException;
 import java.util.Map;
 
 import org.domainrobot.sdk.models.DomainrobotApiException;
@@ -23,22 +22,28 @@ public class CertificateClient extends AbstractClient {
 
 	RestTemplate template;
 
-	public CertificateClient(String userName, String context, String password, String baseUrl, String version) {
+	public CertificateClient(String userName, String context, String password, String baseUrl, String version,
+			RestTemplate template) {
 		this.userName = userName;
 		this.context = context;
 		this.password = password;
 		this.baseUrl = baseUrl;
 		this.version = version;
-		this.template = new RestTemplate();
+		this.template = template;
 	}
 
 	/**
 	 * 
-	 * @return
-	 * @throws IOException
+	 * Orders a certificate in realtime. The prepareOrder tasks should be called
+	 * before to generate the necessary DCV data. <br>
+	 * <br>
+	 * <b>Note:</b> This works only for certain DV certificate products and dcv
+	 * methods.
+	 * 
+	 * @return Certificate
+	 * @throws DomainrobotApiException
 	 */
-	public Certificate realtime(Certificate body, Map<String, String> customHeaders)
-			throws DomainrobotApiException, IOException {
+	public Certificate realtime(Certificate body, Map<String, String> customHeaders) throws DomainrobotApiException {
 		RequestEntity<Certificate> request = buildRequestEntity(body, HttpMethod.POST,
 				baseUrl + "/certificate/realtime", customHeaders);
 		ResponseEntity<JsonResponseDataCertificate> response = null;
@@ -52,11 +57,21 @@ public class CertificateClient extends AbstractClient {
 
 	/**
 	 * 
-	 * @return
-	 * @throws IOException
+	 * Check the csr and generate DCV data for an order, renew and reissue. This
+	 * should be called everytime before the following tasks :
+	 * <ul>
+	 * <li>realtime</li>
+	 * <li>create</li>
+	 * <li>reissue</li>
+	 * <li>renew</li>
+	 * </ul>
+	 * <br>
+	 * 
+	 * @return CertificateData
+	 * @throws DomainrobotApiException
 	 */
 	public CertificateData prepareOrder(CertificateData body, Map<String, String> customHeaders)
-			throws DomainrobotApiException, IOException {
+			throws DomainrobotApiException {
 		RequestEntity<CertificateData> request = buildRequestEntity(body, HttpMethod.POST,
 				baseUrl + "/certificate/prepareOrder", customHeaders);
 		ResponseEntity<JsonResponseDataCertificateData> response = null;

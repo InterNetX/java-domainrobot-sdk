@@ -26,6 +26,8 @@ public class Domainrobot {
 	 */
 	public DomainStudioClient domainStudio;
 
+	private String version = "0.1.0";
+
 	/**
 	 * <p>
 	 * Creates a new instance of the domainrobot provider, that gives access to the
@@ -46,9 +48,8 @@ public class Domainrobot {
 	 * @param baseUrl  : The base url for the api
 	 */
 	public Domainrobot(String user, String context, String password, String baseUrl) {
-		String packageVersion = getClass().getPackage().getImplementationVersion();
-		certificate = new CertificateClient(user, context, password, baseUrl, packageVersion);
-		domainStudio = new DomainStudioClient(user, context, password, baseUrl, packageVersion, getRestTemplate());
+		certificate = new CertificateClient(user, context, password, baseUrl, version, getRestTemplate());
+		domainStudio = new DomainStudioClient(user, context, password, baseUrl, version, getRestTemplate());
 	}
 
 	public CertificateClient getCertificate() {
