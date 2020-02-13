@@ -103,12 +103,12 @@ DomainStudioSources sources = new DomainStudioSources();
 sources.suggestion(new DomainStudioSourceSuggestion().max(5));
 body.searchToken("java").sources(sources);
 try {
-	JsonResponseData response = sdk.domainStudio.search(body, null);
-	System.out.println(response.getData());
+    JsonResponseData response = sdk.domainStudio.search(body, null);
+    System.out.println(response.getData());
 } catch(DomainrobotApiException e) {
-	// Handle API error
+    // Handle API error
 } catch(Exception e) {
-	// Handle unexpected exception
+    // Handle unexpected exception
 }
 ```
 
