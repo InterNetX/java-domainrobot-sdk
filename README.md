@@ -126,7 +126,11 @@ List<SslContact> list(Query body, Map<String, String> customHeaders);
 #### TrustedApplication tasks
 
 ```java
-
+TrustedApplication create(TrustedApplication body, Map<String, String> customHeaders);
+TrustedApplication update(TrustedApplication body, Map<String, String> customHeaders);
+void delete(String uuid, Map<String, String> customHeaders);
+TrustedApplication info(String uuid, Map<String, String> customHeaders);
+List<TrustedApplication> list(Query body, Map<String, String> customHeaders);
 ```
 
 #### Domainstudio tasks
