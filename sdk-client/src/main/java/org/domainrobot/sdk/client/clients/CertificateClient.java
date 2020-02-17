@@ -1,5 +1,6 @@
 package org.domainrobot.sdk.client.clients;
 
+import java.util.List;
 import java.util.Map;
 
 import org.domainrobot.sdk.models.DomainrobotApiException;
@@ -7,8 +8,10 @@ import org.domainrobot.sdk.models.generated.Certificate;
 import org.domainrobot.sdk.models.generated.CertificateData;
 import org.domainrobot.sdk.models.generated.JsonResponseDataCertificate;
 import org.domainrobot.sdk.models.generated.JsonResponseDataCertificateData;
+import org.domainrobot.sdk.models.generated.JsonResponseDataJsonNoData;
 import org.domainrobot.sdk.models.generated.JsonResponseDataObjectJob;
 import org.domainrobot.sdk.models.generated.ObjectJob;
+import org.domainrobot.sdk.models.generated.Query;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
@@ -88,9 +91,10 @@ public class CertificateClient extends AbstractClient {
 	/**
 	 * 
 	 * Orders a certificate. The prepareOrder tasks should be called before to
-	 * generate the necessary DCV data.
+	 * generate the necessary DCV data. Returns a Job with an id that can be used
+	 * for polling.
 	 * 
-	 * @return Certificate
+	 * @return ObjectJob
 	 * @throws DomainrobotApiException
 	 */
 	public ObjectJob create(Certificate body, Map<String, String> customHeaders) throws DomainrobotApiException {
@@ -103,6 +107,134 @@ public class CertificateClient extends AbstractClient {
 			handleException(e);
 		}
 		return response.getBody().getData().get(0);
+	}
+
+	/**
+	 * 
+	 * Reissue a certificate. The prepareOrder tasks should be called before to
+	 * generate the necessary DCV data. Returns a Job with an id that can be used
+	 * for polling.
+	 * 
+	 * @return ObjectJob
+	 * @throws DomainrobotApiException
+	 * @throws IllegalArgumentException If the id field of the body parameter is
+	 *                                  missing.
+	 */
+	public ObjectJob reissue(Certificate body, Map<String, String> customHeaders)
+			throws DomainrobotApiException, IllegalArgumentException {
+		if (body.getId() == null) {
+			throw new IllegalArgumentException("Field Certificate.id is missing.");
+		}
+		RequestEntity<Certificate> request = buildRequestEntity(body, HttpMethod.PUT,
+				baseUrl + "/certificate/" + body.getId().toString(), customHeaders);
+		ResponseEntity<JsonResponseDataObjectJob> response = null;
+		try {
+			response = template.exchange(request, JsonResponseDataObjectJob.class);
+		} catch (HttpClientErrorException e) {
+			handleException(e);
+		}
+		return response.getBody().getData().get(0);
+	}
+
+	/**
+	 * 
+	 * Deletes an existing certificate.
+	 * 
+	 * @throws DomainrobotApiException
+	 */
+	public void delete(int id, Map<String, String> customHeaders) throws DomainrobotApiException {
+		RequestEntity<Certificate> request = buildRequestEntity(HttpMethod.DELETE, baseUrl + "/certificate/" + id,
+				customHeaders);
+		try {
+			template.exchange(request, JsonResponseDataJsonNoData.class);
+		} catch (HttpClientErrorException e) {
+			handleException(e);
+		}
+		return;
+	}
+
+	/**
+	 * 
+	 * Fetches the information for an existing certificate.
+	 * 
+	 * @return Certificate
+	 * @throws DomainrobotApiException
+	 */
+	public Certificate info(int id, Map<String, String> customHeaders) throws DomainrobotApiException {
+		RequestEntity<Certificate> request = buildRequestEntity(HttpMethod.GET, baseUrl + "/certificate/" + id,
+				customHeaders);
+		ResponseEntity<JsonResponseDataCertificate> response = null;
+		try {
+			response = template.exchange(request, JsonResponseDataCertificate.class);
+		} catch (HttpClientErrorException e) {
+			handleException(e);
+		}
+		return response.getBody().getData().get(0);
+	}
+
+	/**
+	 * 
+	 * Sends a certificate list request.
+	 * 
+	 * @return List of Certificate
+	 * @throws DomainrobotApiException
+	 */
+	public List<Certificate> list(Query body, Map<String, String> customHeaders) throws DomainrobotApiException {
+		RequestEntity<Query> request = buildRequestEntity(body, HttpMethod.GET, baseUrl + "/certificate/_search",
+				customHeaders);
+		ResponseEntity<JsonResponseDataCertificate> response = null;
+		try {
+			response = template.exchange(request, JsonResponseDataCertificate.class);
+		} catch (HttpClientErrorException e) {
+			handleException(e);
+		}
+		return response.getBody().getData();
+	}
+
+	/**
+	 * 
+	 * Renew a certificate. The prepareOrder tasks should be called before to
+	 * generate the necessary DCV data. Returns a Job with an id that can be used
+	 * for polling.
+	 * 
+	 * @return ObjectJob
+	 * @throws DomainrobotApiException
+	 * @throws IllegalArgumentException If the id field of the body parameter is
+	 *                                  missing.
+	 */
+	public ObjectJob renew(Certificate body, Map<String, String> customHeaders)
+			throws DomainrobotApiException, IllegalArgumentException {
+		if (body.getId() == null) {
+			throw new IllegalArgumentException("Field Certificate.id is missing.");
+		}
+		RequestEntity<Certificate> request = buildRequestEntity(body, HttpMethod.PUT,
+				baseUrl + "/certificate/" + body.getId().toString() + "/_renew", customHeaders);
+		ResponseEntity<JsonResponseDataObjectJob> response = null;
+		try {
+			response = template.exchange(request, JsonResponseDataObjectJob.class);
+		} catch (HttpClientErrorException e) {
+			handleException(e);
+		}
+		return response.getBody().getData().get(0);
+	}
+
+	/**
+	 * 
+	 * Updates the comment for an existing certificate.
+	 * 
+	 * @throws DomainrobotApiException
+	 */
+	public void commentUpdate(int id, String comment, Map<String, String> customHeaders)
+			throws DomainrobotApiException, IllegalArgumentException {
+		Certificate body = new Certificate().comment(comment);
+		RequestEntity<Certificate> request = buildRequestEntity(body, HttpMethod.PUT,
+				baseUrl + "/certificate/" + id + "/_comment", customHeaders);
+		try {
+			template.exchange(request, JsonResponseDataJsonNoData.class);
+		} catch (HttpClientErrorException e) {
+			handleException(e);
+		}
+		return;
 	}
 
 }
