@@ -109,6 +109,19 @@ public class AbstractClient {
 		}
 	}
 
+	/**
+	 * Builds a RequestEntity for the RestTemplate.
+	 * 
+	 * @param <T>
+	 * @param method
+	 * @param url
+	 * @param customHeaders
+	 * @return Returns a RequestEntity with the type of the given body.
+	 */
+	public <T> RequestEntity<T> buildRequestEntity(HttpMethod method, String url, Map<String, String> customHeaders) {
+		return buildRequestEntity(null, method, url, customHeaders);
+	}
+
 	public void handleException(HttpClientErrorException e) throws DomainrobotApiException {
 		String bodyAsString = e.getResponseBodyAsString();
 		String message = "";
