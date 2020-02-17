@@ -7,6 +7,8 @@ import org.domainrobot.sdk.models.generated.Certificate;
 import org.domainrobot.sdk.models.generated.CertificateData;
 import org.domainrobot.sdk.models.generated.JsonResponseDataCertificate;
 import org.domainrobot.sdk.models.generated.JsonResponseDataCertificateData;
+import org.domainrobot.sdk.models.generated.JsonResponseDataObjectJob;
+import org.domainrobot.sdk.models.generated.ObjectJob;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
@@ -77,6 +79,26 @@ public class CertificateClient extends AbstractClient {
 		ResponseEntity<JsonResponseDataCertificateData> response = null;
 		try {
 			response = template.exchange(request, JsonResponseDataCertificateData.class);
+		} catch (HttpClientErrorException e) {
+			handleException(e);
+		}
+		return response.getBody().getData().get(0);
+	}
+
+	/**
+	 * 
+	 * Orders a certificate. The prepareOrder tasks should be called before to
+	 * generate the necessary DCV data.
+	 * 
+	 * @return Certificate
+	 * @throws DomainrobotApiException
+	 */
+	public ObjectJob create(Certificate body, Map<String, String> customHeaders) throws DomainrobotApiException {
+		RequestEntity<Certificate> request = buildRequestEntity(body, HttpMethod.POST, baseUrl + "/certificate",
+				customHeaders);
+		ResponseEntity<JsonResponseDataObjectJob> response = null;
+		try {
+			response = template.exchange(request, JsonResponseDataObjectJob.class);
 		} catch (HttpClientErrorException e) {
 			handleException(e);
 		}
