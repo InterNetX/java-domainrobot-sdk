@@ -138,19 +138,21 @@ public class CertificateClient extends AbstractClient {
 
 	/**
 	 * 
-	 * Deletes an existing certificate.
+	 * Deletes an existing certificate. Returns a Job with an id that can be used
+	 * for polling.
 	 * 
 	 * @throws DomainrobotApiException
 	 */
-	public void delete(int id, Map<String, String> customHeaders) throws DomainrobotApiException {
+	public ObjectJob delete(int id, Map<String, String> customHeaders) throws DomainrobotApiException {
 		RequestEntity<Certificate> request = buildRequestEntity(HttpMethod.DELETE, baseUrl + "/certificate/" + id,
 				customHeaders);
+		ResponseEntity<JsonResponseDataObjectJob> response = null;
 		try {
-			template.exchange(request, JsonResponseDataJsonNoData.class);
+			response = template.exchange(request, JsonResponseDataObjectJob.class);
 		} catch (HttpClientErrorException e) {
 			handleException(e);
 		}
-		return;
+		return response.getBody().getData().get(0);
 	}
 
 	/**

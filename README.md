@@ -65,10 +65,38 @@ Domainrobot sdk = Domainrobot(userName,password,context,baseUrl);
 
 ### Supported API calls
 
-#### Domainstudio tasks
+#### Domain tasks
 
 ```java
-List<DomainEnvelope> search(DomainEnvelopeSearchRequest body, MultiValueMap<String, String> customHeaders);
+
+```
+
+#### Domain cancelation tasks
+
+```java
+
+```
+
+#### Contact tasks
+
+```java
+Contact create(Contact body, Map<String, String> customHeaders);
+Contact update(Contact body, Map<String, String> customHeaders);
+void delete(int id, Map<String, String> customHeaders);
+Contact info(int id, Map<String, String> customHeaders);
+List<Contact> list(Query body, Map<String, String> customHeaders);
+```
+
+#### Zone tasks
+
+```java
+Zone create(Zone body, Map<String, String> customHeaders);
+Zone update(Zone body, Map<String, String> customHeaders);
+void delete(String origin, String virtualNameServer, Map<String, String> customHeaders);
+Zone info(String origin, String virtualNameServer, Map<String, String> customHeaders);
+List<Zone> list(Query body, Map<String, String> customHeaders);
+void stream(String origin, ZoneStream body, Map<String, String> customHeaders);
+Zone importZone(Zone body, Map<String, String> customHeaders);
 ```
 
 #### Certificate tasks
@@ -76,6 +104,48 @@ List<DomainEnvelope> search(DomainEnvelopeSearchRequest body, MultiValueMap<Stri
 ```java
 Certificate realtime(Certificate body, Map<String, String> customHeaders);
 CertificateData prepareOrder(CertificateData body, Map<String, String> customHeaders);
+ObjectJob create(Certificate body, Map<String, String> customHeaders);
+ObjectJob reissue(Certificate body, Map<String, String> customHeaders);
+ObjectJob delete(int id, Map<String, String> customHeaders);
+Certificate info(int id, Map<String, String> customHeaders);
+List<Certificate> list(Query body, Map<String, String> customHeaders);
+ObjectJob renew(Certificate body, Map<String, String> customHeaders);
+void commentUpdate(int id, String comment, Map<String, String> customHeaders);
+```
+
+#### SslContact tasks
+
+```java
+SslContact create(SslContact body, Map<String, String> customHeaders);
+SslContact update(SslContact body, Map<String, String> customHeaders);
+void delete(int id, Map<String, String> customHeaders);
+SslContact info(int id, Map<String, String> customHeaders);
+List<SslContact> list(Query body, Map<String, String> customHeaders);
+```
+
+#### TrustedApplication tasks
+
+```java
+
+```
+
+#### Domainstudio tasks
+
+```java
+List<DomainEnvelope> search(DomainEnvelopeSearchRequest body, MultiValueMap<String, String> customHeaders);
+```
+
+#### Poll tasks
+
+```java
+PollMessage info(Map<String, String> customHeaders);
+void confirm(int id, Map<String, String> customHeaders)
+```
+
+#### Transferout tasks
+
+```java
+
 ```
 
 ### Models
