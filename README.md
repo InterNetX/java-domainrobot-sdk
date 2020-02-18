@@ -68,13 +68,28 @@ Domainrobot sdk = Domainrobot(userName,password,context,baseUrl);
 #### Domain tasks
 
 ```java
-
+ObjectJob create(Domain body, Map<String, String> customHeaders);
+ObjectJob update(Domain body, Map<String, String> customHeaders);
+Domain info(String domain, Map<String, String> customHeaders);
+List<Domain> list(Query body, Map<String, String> customHeaders);
+Domain createAuthinfo1(String domain, Map<String, String> customHeaders);
+void deleteAuthinfo1(String domain, Map<String, String> customHeaders);
+Domain createAuthinfo2(String domain, Map<String, String> customHeaders);
+ObjectJob renew(Domain body, Map<String, String> customHeaders);
+ObjectJob transfer(Domain body, Map<String, String> customHeaders);
+void updateStatus(Domain body, Map<String, String> customHeaders);
+List<DomainRestore> restoreList(Query body, Map<String, String> customHeaders);
+ObjectJob restore(Domain body, Map<String, String> customHeaders);
 ```
 
 #### Domain cancelation tasks
 
 ```java
-
+DomainCancelation create(DomainCancelation body, Map<String, String> customHeaders);
+void update(DomainCancelation body, Map<String, String> customHeaders);
+void delete(String domain, Map<String, String> customHeaders);
+DomainCancelation info(String domain, Map<String, String> customHeaders);
+List<DomainCancelation> list(Query body, Map<String, String> customHeaders);
 ```
 
 #### Contact tasks
