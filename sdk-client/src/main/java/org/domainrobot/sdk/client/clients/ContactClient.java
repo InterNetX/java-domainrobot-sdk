@@ -110,7 +110,36 @@ public class ContactClient extends AbstractClient {
 
     /**
      * 
-     * Sends a Contact list request.
+     * Sends a Contact list request. <br>
+     * <br>
+     * The following keys can be used for filtering, ordering or fetching additional
+     * data via query parameter:<br>
+     * 
+     * <ul>
+     * <li>country</li>
+     * <li>pcode</li>
+     * <li>city</li>
+     * <li>type</li>
+     * <li>title</li>
+     * <li>lname</li>
+     * <li>alias</li>
+     * <li>state</li>
+     * <li>id</li>
+     * <li>sip</li>
+     * <li>fax</li>
+     * <li>verification</li>
+     * <li>email</li>
+     * <li>fname</li>
+     * <li>address</li>
+     * <li>created</li>
+     * <li>phone</li>
+     * <li>organization</li>
+     * <li>domainsafe</li>
+     * <li>comment</li>
+     * <li>updated</li>
+     * </ul>
+     * <br>
+     * <br>
      * 
      * @return List of Contact
      * @throws DomainrobotApiException

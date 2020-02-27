@@ -118,6 +118,27 @@ public class DomainCancelationClient extends AbstractClient {
      * 
      * Sends a DomainCancelation list request.
      * 
+     * <br>
+     * <br>
+     * The following keys can be used for filtering, ordering or fetching additional
+     * data via query parameter:<br>
+     * 
+     * <ul>
+     * <li>disconnect</li>
+     * <li>execdate</li>
+     * <li>ctid</li>
+     * <li>created</li>
+     * <li>registryStatus</li>
+     * <li>sld</li>
+     * <li>type</li>
+     * <li>tld</li>
+     * <li>subtld</li>
+     * <li>gainingRegistrar</li>
+     * <li>updated</li>
+     * </ul>
+     * <br>
+     * <br>
+     * 
      * @return List of DomainCancelation
      * @throws DomainrobotApiException
      */

@@ -121,6 +121,34 @@ public class ZoneClient extends AbstractClient {
      * 
      * Sends a zone list request.
      * 
+     * <br>
+     * <br>
+     * The following keys can be used for filtering, ordering or fetching additional
+     * data via query parameter:<br>
+     * 
+     * <ul>
+     * <li>dnssec</li>
+     * <li>created</li>
+     * <li>mainip</li>
+     * <li>secondary1</li>
+     * <li>secondary2</li>
+     * <li>secondary3</li>
+     * <li>secondary4</li>
+     * <li>secondary5</li>
+     * <li>secondary6</li>
+     * <li>secondary7</li>
+     * <li>virtualNameServer</li>
+     * <li>domainsafe</li>
+     * <li>name</li>
+     * <li>comment</li>
+     * <li>updated</li>
+     * <li>action</li>
+     * <li>primary</li>
+     * <li>changed</li>
+     * </ul>
+     * <br>
+     * <br>
+     * 
      * @return List of Zone
      * @throws DomainrobotApiException
      */

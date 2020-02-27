@@ -39,6 +39,30 @@ public class TransferOutClient extends AbstractClient {
      * 
      * Sends a TransferOut list request.
      * 
+     * <br>
+     * <br>
+     * The following keys can be used for filtering, ordering or fetching additional
+     * data via query parameter:<br>
+     * 
+     * <ul>
+     * <li>reminder</li>
+     * <li>created</li>
+     * <li>loosingRegistrar</li>
+     * <li>start</li>
+     * <li>sld</li>
+     * <li>tld</li>
+     * <li>type</li>
+     * <li>subtld</li>
+     * <li>end</li>
+     * <li>gainingRegistrar</li>
+     * <li>id</li>
+     * <li>updated</li>
+     * <li>transaction</li>
+     * <li>status</li>
+     * </ul>
+     * <br>
+     * <br>
+     * 
      * @return List of TransferOut
      * @throws DomainrobotApiException
      */

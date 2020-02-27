@@ -99,6 +99,32 @@ public class DomainClient extends AbstractClient {
      * 
      * Sends a Domain list request.
      * 
+     * <br>
+     * <br>
+     * The following keys can be used for filtering, ordering or fetching additional
+     * data via query parameter:<br>
+     * 
+     * <ul>
+     * <li>sld</li>
+     * <li>subtld</li>
+     * <li>tld</li>
+     * <li>status</li>
+     * <li>authinfo</li>
+     * <li>expire</li>
+     * <li>comment</li>
+     * <li>ownerc</li>
+     * <li>updated</li>
+     * <li>zonec</li>
+     * <li>nserver</li>
+     * <li>techc</li>
+     * <li>adminc</li>
+     * <li>certificate</li>
+     * <li>created</li>
+     * <li>autorenew</li>
+     * </ul>
+     * <br>
+     * <br>
+     * 
      * @return List of Domain
      * @throws DomainrobotApiException
      */
@@ -235,6 +261,41 @@ public class DomainClient extends AbstractClient {
     /**
      * 
      * Sends a Domain restore list request.
+     * 
+     * <br>
+     * <br>
+     * The following keys can be used for filtering, ordering or fetching additional
+     * data via query parameter:<br>
+     * 
+     * <ul>
+     * <li>parking</li>
+     * <li>certificate</li>
+     * <li>adminc</li>
+     * <li>cancelation</li>
+     * <li>action</li>
+     * <li>zonec</li>
+     * <li>nserver</li>
+     * <li>techc</li>
+     * <li>nsentry</li>
+     * <li>dnssec</li>
+     * <li>period</li>
+     * <li>created</li>
+     * <li>sld</li>
+     * <li>tld</li>
+     * <li>subtld</li>
+     * <li>deleted</li>
+     * <li>autorenew</li>
+     * <li>expire</li>
+     * <li>domainsafe</li>
+     * <li>comment</li>
+     * <li>ownerc</li>
+     * <li>updated</li>
+     * <li>remarks</li>
+     * <li>authinfo</li>
+     * <li>status</li>
+     * </ul>
+     * <br>
+     * <br>
      * 
      * @return List of DomainRestore
      * @throws DomainrobotApiException

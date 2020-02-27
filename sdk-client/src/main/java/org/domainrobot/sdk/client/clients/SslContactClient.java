@@ -114,6 +114,31 @@ public class SslContactClient extends AbstractClient {
      * 
      * Sends a sslcontact list request.
      * 
+     * <br>
+     * <br>
+     * The following keys can be used for filtering, ordering or fetching additional
+     * data via query parameter:<br>
+     * 
+     * <ul>
+     * <li>country</li>
+     * <li>fname</li>
+     * <li>address</li>
+     * <li>city</li>
+     * <li>created</li>
+     * <li>title</li>
+     * <li>lname</li>
+     * <li>phone</li>
+     * <li>organization</li>
+     * <li>state</li>
+     * <li>id</li>
+     * <li>fax</li>
+     * <li>pcode</li>
+     * <li>updated</li>
+     * <li>email</li>
+     * </ul>
+     * <br>
+     * <br>
+     * 
      * @return List of SslContact
      * @throws DomainrobotApiException
      */

@@ -176,7 +176,28 @@ public class CertificateClient extends AbstractClient {
 
 	/**
 	 * 
-	 * Sends a certificate list request.
+	 * Sends a certificate list request. <br>
+	 * <br>
+	 * The following keys can be used for filtering, ordering or fetching additional
+	 * data via query parameter:<br>
+	 * 
+	 * <ul>
+	 * <li>product</li>
+	 * <li>technical</li>
+	 * <li>orderId</li>
+	 * <li>created</li>
+	 * <li>admin</li>
+	 * <li>type</li>
+	 * <li>expire</li>
+	 * <li>domain</li>
+	 * <li>name</li>
+	 * <li>comment</li>
+	 * <li>id</li>
+	 * <li>updated</li>
+	 * <li>authentication</li>
+	 * </ul>
+	 * <br>
+	 * <br>
 	 * 
 	 * @return List of Certificate
 	 * @throws DomainrobotApiException

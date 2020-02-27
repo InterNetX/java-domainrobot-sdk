@@ -117,6 +117,22 @@ public class TrustedApplicationClient extends AbstractClient {
      * 
      * Sends a TrustedApplication list request.
      * 
+     * <br>
+     * <br>
+     * The following keys can be used for filtering, ordering or fetching additional
+     * data via query parameter:<br>
+     * 
+     * <ul>
+     * <li>created</li>
+     * <li>comment</li>
+     * <li>uuid</li>
+     * <li>device</li>
+     * <li>updated</li>
+     * <li>application</li>
+     * </ul>
+     * <br>
+     * <br>
+     * 
      * @return List of TrustedApplication
      * @throws DomainrobotApiException
      */
@@ -133,6 +149,3 @@ public class TrustedApplicationClient extends AbstractClient {
     }
 
 }
-
-
-
