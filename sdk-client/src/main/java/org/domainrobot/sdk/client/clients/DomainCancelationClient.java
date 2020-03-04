@@ -64,18 +64,19 @@ public class DomainCancelationClient extends AbstractClient {
      * @throws DomainrobotApiException
      * @throws IllegalArgumentException If field domain is missing
      */
-    public void update(DomainCancelation body, Map<String, String> customHeaders) throws DomainrobotApiException {
+    public DomainCancelation update(DomainCancelation body, Map<String, String> customHeaders) throws DomainrobotApiException {
         if (body.getDomain() == null) {
             throw new IllegalArgumentException("Field DomainCancelation.domain is missing.");
         }
         RequestEntity<DomainCancelation> request = buildRequestEntity(body, HttpMethod.PUT,
                 baseUrl + "/domain/" + body.getDomain() + "/cancelation", customHeaders);
+        ResponseEntity<JsonResponseDataDomainCancelation> response = null;
         try {
-            template.exchange(request, JsonResponseDataJsonNoData.class);
+            response = template.exchange(request, JsonResponseDataJsonNoData.class);
         } catch (HttpClientErrorException e) {
             handleException(e);
         }
-        return;
+        return response.getBody().getData().get(0);
     }
 
     /**
