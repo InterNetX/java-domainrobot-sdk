@@ -143,7 +143,7 @@ public class DomainCancelationClient extends AbstractClient {
      * @throws DomainrobotApiException
      */
     public List<DomainCancelation> list(Query body, Map<String, String> customHeaders) throws DomainrobotApiException {
-        RequestEntity<Query> request = buildRequestEntity(body, HttpMethod.GET, baseUrl + "/domain/cancelation/_search",
+        RequestEntity<Query> request = buildRequestEntity(body, HttpMethod.POST, baseUrl + "/domain/cancelation/_search",
                 customHeaders);
         ResponseEntity<JsonResponseDataDomainCancelation> response = null;
         try {
