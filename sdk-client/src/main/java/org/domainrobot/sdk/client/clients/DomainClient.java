@@ -184,16 +184,15 @@ public class DomainClient extends AbstractClient {
      * @return Domain
      * @throws DomainrobotApiException
      */
-    public Domain createAuthinfo2(String domain, Map<String, String> customHeaders) throws DomainrobotApiException {
+    public void createAuthinfo2(String domain, Map<String, String> customHeaders) throws DomainrobotApiException {
         RequestEntity<Domain> request = buildRequestEntity(HttpMethod.POST,
                 baseUrl + "/domain/" + domain + "/_authinfo2", customHeaders);
-        ResponseEntity<JsonResponseDataDomain> response = null;
         try {
-            response = template.exchange(request, JsonResponseDataDomain.class);
+            template.exchange(request, JsonResponseDataDomain.class);
         } catch (HttpClientErrorException e) {
             handleException(e);
         }
-        return response.getBody().getData().get(0);
+        return;
     }
 
     /**
