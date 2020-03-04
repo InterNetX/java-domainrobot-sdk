@@ -239,23 +239,24 @@ public class DomainClient extends AbstractClient {
 
     /**
      * 
-     * Sends a Domain transfer request.
+     * Sends a Domain updateStatus request.
      * 
      * @return ObjectJob
      * @throws DomainrobotApiException
      */
-    public void updateStatus(Domain body, Map<String, String> customHeaders) throws DomainrobotApiException {
+    public ObjectJob updateStatus(Domain body, Map<String, String> customHeaders) throws DomainrobotApiException {
         if (body.getName() == null) {
             throw new IllegalArgumentException("Field Domain.name is missing.");
         }
         RequestEntity<Domain> request = buildRequestEntity(body, HttpMethod.PUT,
                 baseUrl + "/domain/" + body.getName() + "/_statusUpdate", customHeaders);
+        ResponseEntity<JsonResponseDataObjectJob> response = null;
         try {
-            template.exchange(request, JsonResponseDataObjectJob.class);
+            response = template.exchange(request, JsonResponseDataObjectJob.class);
         } catch (HttpClientErrorException e) {
             handleException(e);
         }
-        return;
+        return response.getBody().getData().get(0);
     }
 
     /**
