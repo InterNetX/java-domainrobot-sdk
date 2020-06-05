@@ -72,7 +72,7 @@ public class DomainCancelationClient extends AbstractClient {
                 baseUrl + "/domain/" + body.getDomain() + "/cancelation", customHeaders);
         ResponseEntity<JsonResponseDataDomainCancelation> response = null;
         try {
-            response = template.exchange(request, JsonResponseDataJsonNoData.class);
+            response = template.exchange(request, JsonResponseDataDomainCancelation.class);
         } catch (HttpClientErrorException e) {
             handleException(e);
         }
