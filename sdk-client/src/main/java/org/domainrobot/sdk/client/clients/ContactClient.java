@@ -145,7 +145,7 @@ public class ContactClient extends AbstractClient {
      * @throws DomainrobotApiException
      */
     public List<Contact> list(Query body, Map<String, String> customHeaders) throws DomainrobotApiException {
-        RequestEntity<Query> request = buildRequestEntity(body, HttpMethod.GET, baseUrl + "/contact/_search",
+        RequestEntity<Query> request = buildRequestEntity(body, HttpMethod.POST, baseUrl + "/contact/_search",
                 customHeaders);
         ResponseEntity<JsonResponseDataContact> response = null;
         try {
