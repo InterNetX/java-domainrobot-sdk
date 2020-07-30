@@ -18,6 +18,8 @@ import org.springframework.http.RequestEntity;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.client.HttpServerErrorException;
+import org.springframework.web.client.HttpStatusCodeException;
 
 /**
  * Abstract class for all clients.
@@ -144,22 +146,28 @@ public class AbstractClient {
 		}
 	}
 
-	public void handleException(HttpClientErrorException e) throws DomainrobotApiException {
-		String bodyAsString = e.getResponseBodyAsString();
-		String message = "";
-		String errorCode = "";
-		String stid = "";
-		try {
-			JsonResponseData body = JsonUtils.deserialize(bodyAsString.getBytes(), JsonResponseData.class);
-			message = body.getMessages().get(0).getText();
-			errorCode = body.getMessages().get(0).getCode();
-			stid = body.getStid();
-		} catch (IOException ioException) {
-			// Can't parse the response body to JsonResponseData model
-		}
+	public void handleException(Exception e) throws DomainrobotApiException, Exception, Exception {
+		// Handle HttpClientErrorException and HttpServerErrorException
+		if (e instanceof HttpStatusCodeException) {
+			HttpClientErrorException ex = (HttpClientErrorException) e;
+			String bodyAsString = ex.getResponseBodyAsString();
+			String message = "";
+			String errorCode = "";
+			String stid = "";
+			try {
+				JsonResponseData body = JsonUtils.deserialize(bodyAsString.getBytes(), JsonResponseData.class);
+				message = body.getMessages().get(0).getText();
+				errorCode = body.getMessages().get(0).getCode();
+				stid = body.getStid();
+			} catch (IOException ioException) {
+				// Can't parse the response body to JsonResponseData model
+			}
 
-		throw new DomainrobotApiException(message, bodyAsString, errorCode, stid,
-				e.getResponseHeaders().toSingleValueMap());
+			throw new DomainrobotApiException(message, bodyAsString, errorCode, stid,
+					ex.getResponseHeaders().toSingleValueMap());
+		} else {
+			throw e;
+		}
 
 	}
 

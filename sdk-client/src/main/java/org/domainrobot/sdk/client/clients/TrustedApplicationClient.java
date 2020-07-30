@@ -42,13 +42,13 @@ public class TrustedApplicationClient extends AbstractClient {
      * @throws DomainrobotApiException
      */
     public TrustedApplication create(TrustedApplication body, Map<String, String> customHeaders)
-            throws DomainrobotApiException {
+            throws DomainrobotApiException, Exception {
         RequestEntity<TrustedApplication> request = buildRequestEntity(body, HttpMethod.POST, baseUrl + "/trustedapp",
                 customHeaders);
         ResponseEntity<JsonResponseDataTrustedApplication> response = null;
         try {
             response = template.exchange(request, JsonResponseDataTrustedApplication.class);
-        } catch (HttpClientErrorException e) {
+        } catch (Exception e) {
             handleException(e);
         }
         return response.getBody().getData().get(0);
@@ -62,7 +62,7 @@ public class TrustedApplicationClient extends AbstractClient {
      * @throws DomainrobotApiException
      */
     public TrustedApplication update(TrustedApplication body, Map<String, String> customHeaders)
-            throws DomainrobotApiException {
+            throws DomainrobotApiException, Exception {
         if (body.getUuid() == null) {
             throw new IllegalArgumentException("Field TrustedApplication.uuid is missing.");
         }
@@ -71,7 +71,7 @@ public class TrustedApplicationClient extends AbstractClient {
         ResponseEntity<JsonResponseDataTrustedApplication> response = null;
         try {
             response = template.exchange(request, JsonResponseDataTrustedApplication.class);
-        } catch (HttpClientErrorException e) {
+        } catch (Exception e) {
             handleException(e);
         }
         return response.getBody().getData().get(0);
@@ -83,12 +83,12 @@ public class TrustedApplicationClient extends AbstractClient {
      * 
      * @throws DomainrobotApiException
      */
-    public void delete(String uuid, Map<String, String> customHeaders) throws DomainrobotApiException {
+    public void delete(String uuid, Map<String, String> customHeaders) throws DomainrobotApiException, Exception {
         RequestEntity<TrustedApplication> request = buildRequestEntity(HttpMethod.DELETE,
                 baseUrl + "/trustedapp/" + uuid, customHeaders);
         try {
             template.exchange(request, JsonResponseDataJsonNoData.class);
-        } catch (HttpClientErrorException e) {
+        } catch (Exception e) {
             handleException(e);
         }
         return;
@@ -101,13 +101,14 @@ public class TrustedApplicationClient extends AbstractClient {
      * @return TrustedApplication
      * @throws DomainrobotApiException
      */
-    public TrustedApplication info(String uuid, Map<String, String> customHeaders) throws DomainrobotApiException {
+    public TrustedApplication info(String uuid, Map<String, String> customHeaders)
+            throws DomainrobotApiException, Exception {
         RequestEntity<TrustedApplication> request = buildRequestEntity(HttpMethod.GET, baseUrl + "/trustedapp/" + uuid,
                 customHeaders);
         ResponseEntity<JsonResponseDataTrustedApplication> response = null;
         try {
             response = template.exchange(request, JsonResponseDataTrustedApplication.class);
-        } catch (HttpClientErrorException e) {
+        } catch (Exception e) {
             handleException(e);
         }
         return response.getBody().getData().get(0);
@@ -137,13 +138,13 @@ public class TrustedApplicationClient extends AbstractClient {
      * @throws DomainrobotApiException
      */
     public List<TrustedApplication> list(Query body, Map<String, String> customHeaders,
-            Map<String, Object> queryParameters) throws DomainrobotApiException {
+            Map<String, Object> queryParameters) throws DomainrobotApiException, Exception {
         RequestEntity<Query> request = buildRequestEntity(body, HttpMethod.GET, baseUrl + "/trustedapp/_search",
                 customHeaders, queryParameters);
         ResponseEntity<JsonResponseDataTrustedApplication> response = null;
         try {
             response = template.exchange(request, JsonResponseDataTrustedApplication.class);
-        } catch (HttpClientErrorException e) {
+        } catch (Exception e) {
             handleException(e);
         }
         return response.getBody().getData();

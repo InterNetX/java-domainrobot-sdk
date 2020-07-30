@@ -12,6 +12,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.client.RestTemplate;
 
 /**
@@ -42,7 +43,7 @@ public class DomainCancelationClient extends AbstractClient {
      * @throws IllegalArgumentException If field domain is missing
      */
     public DomainCancelation create(DomainCancelation body, Map<String, String> customHeaders)
-            throws DomainrobotApiException {
+            throws DomainrobotApiException, Exception {
         if (body.getDomain() == null) {
             throw new IllegalArgumentException("Field DomainCancelation.domain is missing.");
         }
@@ -51,7 +52,7 @@ public class DomainCancelationClient extends AbstractClient {
         ResponseEntity<JsonResponseDataDomainCancelation> response = null;
         try {
             response = template.exchange(request, JsonResponseDataDomainCancelation.class);
-        } catch (HttpClientErrorException e) {
+        } catch (Exception e) {
             handleException(e);
         }
         return response.getBody().getData().get(0);
@@ -65,7 +66,7 @@ public class DomainCancelationClient extends AbstractClient {
      * @throws IllegalArgumentException If field domain is missing
      */
     public DomainCancelation update(DomainCancelation body, Map<String, String> customHeaders)
-            throws DomainrobotApiException {
+            throws DomainrobotApiException, Exception {
         if (body.getDomain() == null) {
             throw new IllegalArgumentException("Field DomainCancelation.domain is missing.");
         }
@@ -74,7 +75,7 @@ public class DomainCancelationClient extends AbstractClient {
         ResponseEntity<JsonResponseDataDomainCancelation> response = null;
         try {
             response = template.exchange(request, JsonResponseDataDomainCancelation.class);
-        } catch (HttpClientErrorException e) {
+        } catch (Exception e) {
             handleException(e);
         }
         return response.getBody().getData().get(0);
@@ -86,12 +87,12 @@ public class DomainCancelationClient extends AbstractClient {
      * 
      * @throws DomainrobotApiException
      */
-    public void delete(String domain, Map<String, String> customHeaders) throws DomainrobotApiException {
+    public void delete(String domain, Map<String, String> customHeaders) throws DomainrobotApiException, Exception {
         RequestEntity<DomainCancelation> request = buildRequestEntity(HttpMethod.DELETE,
                 baseUrl + "/domain/" + domain + "/cancelation", customHeaders);
         try {
             template.exchange(request, JsonResponseDataJsonNoData.class);
-        } catch (HttpClientErrorException e) {
+        } catch (Exception e) {
             handleException(e);
         }
         return;
@@ -104,13 +105,14 @@ public class DomainCancelationClient extends AbstractClient {
      * @return DomainCancelation
      * @throws DomainrobotApiException
      */
-    public DomainCancelation info(String domain, Map<String, String> customHeaders) throws DomainrobotApiException {
+    public DomainCancelation info(String domain, Map<String, String> customHeaders)
+            throws DomainrobotApiException, Exception {
         RequestEntity<DomainCancelation> request = buildRequestEntity(HttpMethod.GET,
                 baseUrl + "/domain/" + domain + "/cancelation", customHeaders);
         ResponseEntity<JsonResponseDataDomainCancelation> response = null;
         try {
             response = template.exchange(request, JsonResponseDataDomainCancelation.class);
-        } catch (HttpClientErrorException e) {
+        } catch (Exception e) {
             handleException(e);
         }
         return response.getBody().getData().get(0);
@@ -145,13 +147,13 @@ public class DomainCancelationClient extends AbstractClient {
      * @throws DomainrobotApiException
      */
     public List<DomainCancelation> list(Query body, Map<String, String> customHeaders,
-            Map<String, Object> queryParameters) throws DomainrobotApiException {
+            Map<String, Object> queryParameters) throws DomainrobotApiException, Exception {
         RequestEntity<Query> request = buildRequestEntity(body, HttpMethod.POST,
                 baseUrl + "/domain/cancelation/_search", customHeaders, queryParameters);
         ResponseEntity<JsonResponseDataDomainCancelation> response = null;
         try {
             response = template.exchange(request, JsonResponseDataDomainCancelation.class);
-        } catch (HttpClientErrorException e) {
+        } catch (Exception e) {
             handleException(e);
         }
         return response.getBody().getData();

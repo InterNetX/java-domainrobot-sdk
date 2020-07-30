@@ -12,6 +12,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.client.RestTemplate;
 
 /**
@@ -40,12 +41,12 @@ public class ContactClient extends AbstractClient {
      * @return Contact
      * @throws DomainrobotApiException
      */
-    public Contact create(Contact body, Map<String, String> customHeaders) throws DomainrobotApiException {
+    public Contact create(Contact body, Map<String, String> customHeaders) throws DomainrobotApiException, Exception {
         RequestEntity<Contact> request = buildRequestEntity(body, HttpMethod.POST, baseUrl + "/contact", customHeaders);
         ResponseEntity<JsonResponseDataContact> response = null;
         try {
             response = template.exchange(request, JsonResponseDataContact.class);
-        } catch (HttpClientErrorException e) {
+        } catch (Exception e) {
             handleException(e);
         }
         return response.getBody().getData().get(0);
@@ -58,7 +59,7 @@ public class ContactClient extends AbstractClient {
      * @return Contact
      * @throws DomainrobotApiException
      */
-    public Contact update(Contact body, Map<String, String> customHeaders) throws DomainrobotApiException {
+    public Contact update(Contact body, Map<String, String> customHeaders) throws DomainrobotApiException, Exception {
         if (body.getId() == null) {
             throw new IllegalArgumentException("Field Contact.id is missing.");
         }
@@ -67,7 +68,7 @@ public class ContactClient extends AbstractClient {
         ResponseEntity<JsonResponseDataContact> response = null;
         try {
             response = template.exchange(request, JsonResponseDataContact.class);
-        } catch (HttpClientErrorException e) {
+        } catch (Exception e) {
             handleException(e);
         }
         return response.getBody().getData().get(0);
@@ -79,12 +80,12 @@ public class ContactClient extends AbstractClient {
      * 
      * @throws DomainrobotApiException
      */
-    public void delete(int id, Map<String, String> customHeaders) throws DomainrobotApiException {
+    public void delete(int id, Map<String, String> customHeaders) throws DomainrobotApiException, Exception {
         RequestEntity<Contact> request = buildRequestEntity(HttpMethod.DELETE, baseUrl + "/contact/" + id,
                 customHeaders);
         try {
             template.exchange(request, JsonResponseDataJsonNoData.class);
-        } catch (HttpClientErrorException e) {
+        } catch (Exception e) {
             handleException(e);
         }
         return;
@@ -97,12 +98,12 @@ public class ContactClient extends AbstractClient {
      * @return Contact
      * @throws DomainrobotApiException
      */
-    public Contact info(int id, Map<String, String> customHeaders) throws DomainrobotApiException {
+    public Contact info(int id, Map<String, String> customHeaders) throws DomainrobotApiException, Exception {
         RequestEntity<Contact> request = buildRequestEntity(HttpMethod.GET, baseUrl + "/contact/" + id, customHeaders);
         ResponseEntity<JsonResponseDataContact> response = null;
         try {
             response = template.exchange(request, JsonResponseDataContact.class);
-        } catch (HttpClientErrorException e) {
+        } catch (Exception e) {
             handleException(e);
         }
         return response.getBody().getData().get(0);
@@ -145,14 +146,14 @@ public class ContactClient extends AbstractClient {
      * @throws DomainrobotApiException
      */
     public List<Contact> list(Query body, Map<String, String> customHeaders, Map<String, Object> queryParameters)
-            throws DomainrobotApiException {
+            throws DomainrobotApiException, Exception {
 
         RequestEntity<Query> request = buildRequestEntity(body, HttpMethod.POST, baseUrl + "/contact/_search",
                 customHeaders, queryParameters);
         ResponseEntity<JsonResponseDataContact> response = null;
         try {
             response = template.exchange(request, JsonResponseDataContact.class);
-        } catch (HttpClientErrorException e) {
+        } catch (Exception e) {
             handleException(e);
         }
         return response.getBody().getData();

@@ -15,7 +15,6 @@ import org.domainrobot.sdk.models.generated.Query;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
 /**
@@ -48,13 +47,14 @@ public class CertificateClient extends AbstractClient {
 	 * @return Certificate
 	 * @throws DomainrobotApiException
 	 */
-	public Certificate realtime(Certificate body, Map<String, String> customHeaders) throws DomainrobotApiException {
+	public Certificate realtime(Certificate body, Map<String, String> customHeaders)
+			throws DomainrobotApiException, Exception {
 		RequestEntity<Certificate> request = buildRequestEntity(body, HttpMethod.POST,
 				baseUrl + "/certificate/realtime", customHeaders);
 		ResponseEntity<JsonResponseDataCertificate> response = null;
 		try {
 			response = template.exchange(request, JsonResponseDataCertificate.class);
-		} catch (HttpClientErrorException e) {
+		} catch (Exception e) {
 			handleException(e);
 		}
 		return response.getBody().getData().get(0);
@@ -76,13 +76,13 @@ public class CertificateClient extends AbstractClient {
 	 * @throws DomainrobotApiException
 	 */
 	public CertificateData prepareOrder(CertificateData body, Map<String, String> customHeaders)
-			throws DomainrobotApiException {
+			throws DomainrobotApiException, Exception {
 		RequestEntity<CertificateData> request = buildRequestEntity(body, HttpMethod.POST,
 				baseUrl + "/certificate/prepareOrder", customHeaders);
 		ResponseEntity<JsonResponseDataCertificateData> response = null;
 		try {
 			response = template.exchange(request, JsonResponseDataCertificateData.class);
-		} catch (HttpClientErrorException e) {
+		} catch (Exception e) {
 			handleException(e);
 		}
 		return response.getBody().getData().get(0);
@@ -97,13 +97,14 @@ public class CertificateClient extends AbstractClient {
 	 * @return ObjectJob
 	 * @throws DomainrobotApiException
 	 */
-	public ObjectJob create(Certificate body, Map<String, String> customHeaders) throws DomainrobotApiException {
+	public ObjectJob create(Certificate body, Map<String, String> customHeaders)
+			throws DomainrobotApiException, Exception {
 		RequestEntity<Certificate> request = buildRequestEntity(body, HttpMethod.POST, baseUrl + "/certificate",
 				customHeaders);
 		ResponseEntity<JsonResponseDataObjectJob> response = null;
 		try {
 			response = template.exchange(request, JsonResponseDataObjectJob.class);
-		} catch (HttpClientErrorException e) {
+		} catch (Exception e) {
 			handleException(e);
 		}
 		return response.getBody().getData().get(0);
@@ -121,7 +122,7 @@ public class CertificateClient extends AbstractClient {
 	 *                                  missing.
 	 */
 	public ObjectJob reissue(Certificate body, Map<String, String> customHeaders)
-			throws DomainrobotApiException, IllegalArgumentException {
+			throws DomainrobotApiException, IllegalArgumentException, Exception {
 		if (body.getId() == null) {
 			throw new IllegalArgumentException("Field Certificate.id is missing.");
 		}
@@ -130,7 +131,7 @@ public class CertificateClient extends AbstractClient {
 		ResponseEntity<JsonResponseDataObjectJob> response = null;
 		try {
 			response = template.exchange(request, JsonResponseDataObjectJob.class);
-		} catch (HttpClientErrorException e) {
+		} catch (Exception e) {
 			handleException(e);
 		}
 		return response.getBody().getData().get(0);
@@ -143,13 +144,13 @@ public class CertificateClient extends AbstractClient {
 	 * 
 	 * @throws DomainrobotApiException
 	 */
-	public ObjectJob delete(int id, Map<String, String> customHeaders) throws DomainrobotApiException {
+	public ObjectJob delete(int id, Map<String, String> customHeaders) throws DomainrobotApiException, Exception {
 		RequestEntity<Certificate> request = buildRequestEntity(HttpMethod.DELETE, baseUrl + "/certificate/" + id,
 				customHeaders);
 		ResponseEntity<JsonResponseDataObjectJob> response = null;
 		try {
 			response = template.exchange(request, JsonResponseDataObjectJob.class);
-		} catch (HttpClientErrorException e) {
+		} catch (Exception e) {
 			handleException(e);
 		}
 		return response.getBody().getData().get(0);
@@ -162,13 +163,13 @@ public class CertificateClient extends AbstractClient {
 	 * @return Certificate
 	 * @throws DomainrobotApiException
 	 */
-	public Certificate info(int id, Map<String, String> customHeaders) throws DomainrobotApiException {
+	public Certificate info(int id, Map<String, String> customHeaders) throws DomainrobotApiException, Exception {
 		RequestEntity<Certificate> request = buildRequestEntity(HttpMethod.GET, baseUrl + "/certificate/" + id,
 				customHeaders);
 		ResponseEntity<JsonResponseDataCertificate> response = null;
 		try {
 			response = template.exchange(request, JsonResponseDataCertificate.class);
-		} catch (HttpClientErrorException e) {
+		} catch (Exception e) {
 			handleException(e);
 		}
 		return response.getBody().getData().get(0);
@@ -203,13 +204,13 @@ public class CertificateClient extends AbstractClient {
 	 * @throws DomainrobotApiException
 	 */
 	public List<Certificate> list(Query body, Map<String, String> customHeaders, Map<String, Object> queryParameters)
-			throws DomainrobotApiException {
+			throws DomainrobotApiException, Exception {
 		RequestEntity<Query> request = buildRequestEntity(body, HttpMethod.GET, baseUrl + "/certificate/_search",
 				customHeaders, queryParameters);
 		ResponseEntity<JsonResponseDataCertificate> response = null;
 		try {
 			response = template.exchange(request, JsonResponseDataCertificate.class);
-		} catch (HttpClientErrorException e) {
+		} catch (Exception e) {
 			handleException(e);
 		}
 		return response.getBody().getData();
@@ -227,7 +228,7 @@ public class CertificateClient extends AbstractClient {
 	 *                                  missing.
 	 */
 	public ObjectJob renew(Certificate body, Map<String, String> customHeaders)
-			throws DomainrobotApiException, IllegalArgumentException {
+			throws DomainrobotApiException, IllegalArgumentException, Exception {
 		if (body.getId() == null) {
 			throw new IllegalArgumentException("Field Certificate.id is missing.");
 		}
@@ -236,7 +237,7 @@ public class CertificateClient extends AbstractClient {
 		ResponseEntity<JsonResponseDataObjectJob> response = null;
 		try {
 			response = template.exchange(request, JsonResponseDataObjectJob.class);
-		} catch (HttpClientErrorException e) {
+		} catch (Exception e) {
 			handleException(e);
 		}
 		return response.getBody().getData().get(0);
@@ -249,13 +250,13 @@ public class CertificateClient extends AbstractClient {
 	 * @throws DomainrobotApiException
 	 */
 	public void commentUpdate(int id, String comment, Map<String, String> customHeaders)
-			throws DomainrobotApiException, IllegalArgumentException {
+			throws DomainrobotApiException, IllegalArgumentException, Exception {
 		Certificate body = new Certificate().comment(comment);
 		RequestEntity<Certificate> request = buildRequestEntity(body, HttpMethod.PUT,
 				baseUrl + "/certificate/" + id + "/_comment", customHeaders);
 		try {
 			template.exchange(request, JsonResponseDataJsonNoData.class);
-		} catch (HttpClientErrorException e) {
+		} catch (Exception e) {
 			handleException(e);
 		}
 		return;

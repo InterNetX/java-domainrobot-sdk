@@ -41,12 +41,12 @@ public class PollClient extends AbstractClient {
      * @return PollMessage
      * @throws DomainrobotApiException
      */
-    public PollMessage info(Map<String, String> customHeaders) throws DomainrobotApiException {
+    public PollMessage info(Map<String, String> customHeaders) throws DomainrobotApiException, Exception {
         RequestEntity<PollMessage> request = buildRequestEntity(HttpMethod.GET, baseUrl + "/poll", customHeaders);
         ResponseEntity<JsonResponseDataPollMessage> response = null;
         try {
             response = template.exchange(request, JsonResponseDataPollMessage.class);
-        } catch (HttpClientErrorException e) {
+        } catch (Exception e) {
             handleException(e);
         }
         return response.getBody().getData().get(0);
@@ -58,12 +58,12 @@ public class PollClient extends AbstractClient {
      * 
      * @throws DomainrobotApiException
      */
-    public void confirm(int id, Map<String, String> customHeaders) throws DomainrobotApiException {
+    public void confirm(int id, Map<String, String> customHeaders) throws DomainrobotApiException, Exception {
         RequestEntity<PollMessage> request = buildRequestEntity(HttpMethod.PUT, baseUrl + "/poll/" + id, customHeaders);
 
         try {
             template.exchange(request, JsonResponseDataCertificate.class);
-        } catch (HttpClientErrorException e) {
+        } catch (Exception e) {
             handleException(e);
         }
         return;

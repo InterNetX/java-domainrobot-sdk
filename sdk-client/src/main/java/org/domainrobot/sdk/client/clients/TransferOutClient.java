@@ -67,13 +67,13 @@ public class TransferOutClient extends AbstractClient {
      * @throws DomainrobotApiException
      */
     public List<TransferOut> list(Query body, Map<String, String> customHeaders, Map<String, Object> queryParameters)
-            throws DomainrobotApiException {
+            throws DomainrobotApiException, Exception {
         RequestEntity<Query> request = buildRequestEntity(body, HttpMethod.GET, baseUrl + "/transferout/_search",
                 customHeaders, queryParameters);
         ResponseEntity<JsonResponseDataTransferOut> response = null;
         try {
             response = template.exchange(request, JsonResponseDataTransferOut.class);
-        } catch (HttpClientErrorException e) {
+        } catch (Exception e) {
             handleException(e);
         }
         return response.getBody().getData();
@@ -86,7 +86,7 @@ public class TransferOutClient extends AbstractClient {
      * @throws DomainrobotApiException
      */
     public void answer(String domain, TransferAnswer answer, Map<String, String> customHeaders)
-            throws DomainrobotApiException {
+            throws DomainrobotApiException, Exception {
         String transformedAnswer = "";
         if (answer == TransferAnswer.ACK) {
             transformedAnswer = "ack";
@@ -99,7 +99,7 @@ public class TransferOutClient extends AbstractClient {
 
         try {
             template.exchange(request, JsonResponseDataJsonNoData.class);
-        } catch (HttpClientErrorException e) {
+        } catch (Exception e) {
             handleException(e);
         }
         return;

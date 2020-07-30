@@ -41,12 +41,12 @@ public class ZoneClient extends AbstractClient {
      * @return Zone
      * @throws DomainrobotApiException
      */
-    public Zone create(Zone body, Map<String, String> customHeaders) throws DomainrobotApiException {
+    public Zone create(Zone body, Map<String, String> customHeaders) throws DomainrobotApiException, Exception {
         RequestEntity<Zone> request = buildRequestEntity(body, HttpMethod.POST, baseUrl + "/zone", customHeaders);
         ResponseEntity<JsonResponseDataZone> response = null;
         try {
             response = template.exchange(request, JsonResponseDataZone.class);
-        } catch (HttpClientErrorException e) {
+        } catch (Exception e) {
             handleException(e);
         }
         return response.getBody().getData().get(0);
@@ -61,7 +61,7 @@ public class ZoneClient extends AbstractClient {
      * @throws IllegalArgumentException If the origin or virtualNameServer is
      *                                  missing.
      */
-    public Zone update(Zone body, Map<String, String> customHeaders) throws DomainrobotApiException {
+    public Zone update(Zone body, Map<String, String> customHeaders) throws DomainrobotApiException, Exception {
         if (body.getOrigin() == null) {
             throw new IllegalArgumentException("Field Zone.origin is missing.");
         }
@@ -73,7 +73,7 @@ public class ZoneClient extends AbstractClient {
         ResponseEntity<JsonResponseDataZone> response = null;
         try {
             response = template.exchange(request, JsonResponseDataZone.class);
-        } catch (HttpClientErrorException e) {
+        } catch (Exception e) {
             handleException(e);
         }
         return response.getBody().getData().get(0);
@@ -86,12 +86,12 @@ public class ZoneClient extends AbstractClient {
      * @throws DomainrobotApiException
      */
     public void delete(String origin, String virtualNameServer, Map<String, String> customHeaders)
-            throws DomainrobotApiException {
+            throws DomainrobotApiException, Exception {
         RequestEntity<Zone> request = buildRequestEntity(HttpMethod.DELETE,
                 baseUrl + "/zone/" + origin + "/" + virtualNameServer, customHeaders);
         try {
             template.exchange(request, JsonResponseDataJsonNoData.class);
-        } catch (HttpClientErrorException e) {
+        } catch (Exception e) {
             handleException(e);
         }
         return;
@@ -105,13 +105,13 @@ public class ZoneClient extends AbstractClient {
      * @throws DomainrobotApiException
      */
     public Zone info(String origin, String virtualNameServer, Map<String, String> customHeaders)
-            throws DomainrobotApiException {
+            throws DomainrobotApiException, Exception {
         RequestEntity<Zone> request = buildRequestEntity(HttpMethod.GET,
                 baseUrl + "/zone/" + origin + "/" + virtualNameServer, customHeaders);
         ResponseEntity<JsonResponseDataZone> response = null;
         try {
             response = template.exchange(request, JsonResponseDataZone.class);
-        } catch (HttpClientErrorException e) {
+        } catch (Exception e) {
             handleException(e);
         }
         return response.getBody().getData().get(0);
@@ -153,13 +153,13 @@ public class ZoneClient extends AbstractClient {
      * @throws DomainrobotApiException
      */
     public List<Zone> list(Query body, Map<String, String> customHeaders, Map<String, Object> queryParameters)
-            throws DomainrobotApiException {
+            throws DomainrobotApiException, Exception {
         RequestEntity<Query> request = buildRequestEntity(body, HttpMethod.GET, baseUrl + "/zone/_search",
                 customHeaders, queryParameters);
         ResponseEntity<JsonResponseDataZone> response = null;
         try {
             response = template.exchange(request, JsonResponseDataZone.class);
-        } catch (HttpClientErrorException e) {
+        } catch (Exception e) {
             handleException(e);
         }
         return response.getBody().getData();
@@ -173,12 +173,12 @@ public class ZoneClient extends AbstractClient {
      * @throws DomainrobotApiException
      */
     public void stream(String origin, ZoneStream body, Map<String, String> customHeaders)
-            throws DomainrobotApiException {
+            throws DomainrobotApiException, Exception {
         RequestEntity<ZoneStream> request = buildRequestEntity(body, HttpMethod.POST,
                 baseUrl + "/zone/" + origin + "/_stream", customHeaders);
         try {
             template.exchange(request, JsonResponseDataJsonNoData.class);
-        } catch (HttpClientErrorException e) {
+        } catch (Exception e) {
             handleException(e);
         }
         return;
@@ -193,7 +193,7 @@ public class ZoneClient extends AbstractClient {
      * @throws IllegalArgumentException If the origin or virtualNameServer is
      *                                  missing.
      */
-    public Zone importZone(Zone body, Map<String, String> customHeaders) throws DomainrobotApiException {
+    public Zone importZone(Zone body, Map<String, String> customHeaders) throws DomainrobotApiException, Exception {
         if (body.getOrigin() == null) {
             throw new IllegalArgumentException("Field Zone.origin is missing.");
         }
@@ -205,7 +205,7 @@ public class ZoneClient extends AbstractClient {
         ResponseEntity<JsonResponseDataZone> response = null;
         try {
             response = template.exchange(request, JsonResponseDataZone.class);
-        } catch (HttpClientErrorException e) {
+        } catch (Exception e) {
             handleException(e);
         }
         return response.getBody().getData().get(0);

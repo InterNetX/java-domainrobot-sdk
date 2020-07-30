@@ -40,13 +40,14 @@ public class SslContactClient extends AbstractClient {
      * @return SslContact
      * @throws DomainrobotApiException
      */
-    public SslContact create(SslContact body, Map<String, String> customHeaders) throws DomainrobotApiException {
+    public SslContact create(SslContact body, Map<String, String> customHeaders)
+            throws DomainrobotApiException, Exception {
         RequestEntity<SslContact> request = buildRequestEntity(body, HttpMethod.POST, baseUrl + "/sslcontact",
                 customHeaders);
         ResponseEntity<JsonResponseDataSslContact> response = null;
         try {
             response = template.exchange(request, JsonResponseDataSslContact.class);
-        } catch (HttpClientErrorException e) {
+        } catch (Exception e) {
             handleException(e);
         }
         return response.getBody().getData().get(0);
@@ -59,7 +60,8 @@ public class SslContactClient extends AbstractClient {
      * @return SslContact
      * @throws DomainrobotApiException
      */
-    public SslContact update(SslContact body, Map<String, String> customHeaders) throws DomainrobotApiException {
+    public SslContact update(SslContact body, Map<String, String> customHeaders)
+            throws DomainrobotApiException, Exception {
         if (body.getId() == null) {
             throw new IllegalArgumentException("Field SslContact.id is missing.");
         }
@@ -68,7 +70,7 @@ public class SslContactClient extends AbstractClient {
         ResponseEntity<JsonResponseDataSslContact> response = null;
         try {
             response = template.exchange(request, JsonResponseDataSslContact.class);
-        } catch (HttpClientErrorException e) {
+        } catch (Exception e) {
             handleException(e);
         }
         return response.getBody().getData().get(0);
@@ -80,12 +82,12 @@ public class SslContactClient extends AbstractClient {
      * 
      * @throws DomainrobotApiException
      */
-    public void delete(int id, Map<String, String> customHeaders) throws DomainrobotApiException {
+    public void delete(int id, Map<String, String> customHeaders) throws DomainrobotApiException, Exception {
         RequestEntity<SslContact> request = buildRequestEntity(HttpMethod.DELETE, baseUrl + "/sslcontact/" + id,
                 customHeaders);
         try {
             template.exchange(request, JsonResponseDataJsonNoData.class);
-        } catch (HttpClientErrorException e) {
+        } catch (Exception e) {
             handleException(e);
         }
         return;
@@ -98,13 +100,13 @@ public class SslContactClient extends AbstractClient {
      * @return SslContact
      * @throws DomainrobotApiException
      */
-    public SslContact info(int id, Map<String, String> customHeaders) throws DomainrobotApiException {
+    public SslContact info(int id, Map<String, String> customHeaders) throws DomainrobotApiException, Exception {
         RequestEntity<SslContact> request = buildRequestEntity(HttpMethod.GET, baseUrl + "/sslcontact/" + id,
                 customHeaders);
         ResponseEntity<JsonResponseDataSslContact> response = null;
         try {
             response = template.exchange(request, JsonResponseDataSslContact.class);
-        } catch (HttpClientErrorException e) {
+        } catch (Exception e) {
             handleException(e);
         }
         return response.getBody().getData().get(0);
@@ -143,13 +145,13 @@ public class SslContactClient extends AbstractClient {
      * @throws DomainrobotApiException
      */
     public List<SslContact> list(Query body, Map<String, String> customHeaders, Map<String, Object> queryParameters)
-            throws DomainrobotApiException {
+            throws DomainrobotApiException, Exception {
         RequestEntity<Query> request = buildRequestEntity(body, HttpMethod.GET, baseUrl + "/sslcontact/_search",
                 customHeaders, queryParameters);
         ResponseEntity<JsonResponseDataSslContact> response = null;
         try {
             response = template.exchange(request, JsonResponseDataSslContact.class);
-        } catch (HttpClientErrorException e) {
+        } catch (Exception e) {
             handleException(e);
         }
         return response.getBody().getData();
