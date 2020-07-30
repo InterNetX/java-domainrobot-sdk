@@ -76,7 +76,7 @@ public class Domainrobot {
 	 */
 	public TrustedApplicationClient trustedApplication;
 
-	private String version = "0.2.3";
+	private String version = "0.2.4";
 
 	/**
 	 * <p>
