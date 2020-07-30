@@ -7,6 +7,10 @@
 * Improved json serialising to ignore null values (#12)
 * Updated pom version in sub modules to match main version (#11)
 
+## [0.2.3] - 2020-07-17
+
+* Fixed the ContactList method using the wrong http method (#9)
+
 ## [0.2.2] - 2020-06-05
 
 * Improved code documentation
