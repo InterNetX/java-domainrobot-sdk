@@ -128,9 +128,10 @@ public class DomainClient extends AbstractClient {
      * @return List of Domain
      * @throws DomainrobotApiException
      */
-    public List<Domain> list(Query body, Map<String, String> customHeaders) throws DomainrobotApiException {
+    public List<Domain> list(Query body, Map<String, String> customHeaders, Map<String, Object> queryParameters)
+            throws DomainrobotApiException {
         RequestEntity<Query> request = buildRequestEntity(body, HttpMethod.POST, baseUrl + "/domain/_search",
-                customHeaders);
+                customHeaders, queryParameters);
         ResponseEntity<JsonResponseDataDomain> response = null;
         try {
             response = template.exchange(request, JsonResponseDataDomain.class);
@@ -300,10 +301,10 @@ public class DomainClient extends AbstractClient {
      * @return List of DomainRestore
      * @throws DomainrobotApiException
      */
-    public List<DomainRestore> restoreList(Query body, Map<String, String> customHeaders)
-            throws DomainrobotApiException {
+    public List<DomainRestore> restoreList(Query body, Map<String, String> customHeaders,
+            Map<String, Object> queryParameters) throws DomainrobotApiException {
         RequestEntity<Query> request = buildRequestEntity(body, HttpMethod.POST, baseUrl + "/domain/restore/_search",
-                customHeaders);
+                customHeaders, queryParameters);
         ResponseEntity<JsonResponseDataDomainRestore> response = null;
         try {
             response = template.exchange(request, JsonResponseDataDomainRestore.class);

@@ -64,7 +64,8 @@ public class DomainCancelationClient extends AbstractClient {
      * @throws DomainrobotApiException
      * @throws IllegalArgumentException If field domain is missing
      */
-    public DomainCancelation update(DomainCancelation body, Map<String, String> customHeaders) throws DomainrobotApiException {
+    public DomainCancelation update(DomainCancelation body, Map<String, String> customHeaders)
+            throws DomainrobotApiException {
         if (body.getDomain() == null) {
             throw new IllegalArgumentException("Field DomainCancelation.domain is missing.");
         }
@@ -143,9 +144,10 @@ public class DomainCancelationClient extends AbstractClient {
      * @return List of DomainCancelation
      * @throws DomainrobotApiException
      */
-    public List<DomainCancelation> list(Query body, Map<String, String> customHeaders) throws DomainrobotApiException {
-        RequestEntity<Query> request = buildRequestEntity(body, HttpMethod.POST, baseUrl + "/domain/cancelation/_search",
-                customHeaders);
+    public List<DomainCancelation> list(Query body, Map<String, String> customHeaders,
+            Map<String, Object> queryParameters) throws DomainrobotApiException {
+        RequestEntity<Query> request = buildRequestEntity(body, HttpMethod.POST,
+                baseUrl + "/domain/cancelation/_search", customHeaders, queryParameters);
         ResponseEntity<JsonResponseDataDomainCancelation> response = null;
         try {
             response = template.exchange(request, JsonResponseDataDomainCancelation.class);

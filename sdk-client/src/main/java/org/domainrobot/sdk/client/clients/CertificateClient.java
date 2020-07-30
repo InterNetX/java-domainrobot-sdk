@@ -202,9 +202,10 @@ public class CertificateClient extends AbstractClient {
 	 * @return List of Certificate
 	 * @throws DomainrobotApiException
 	 */
-	public List<Certificate> list(Query body, Map<String, String> customHeaders) throws DomainrobotApiException {
+	public List<Certificate> list(Query body, Map<String, String> customHeaders, Map<String, Object> queryParameters)
+			throws DomainrobotApiException {
 		RequestEntity<Query> request = buildRequestEntity(body, HttpMethod.GET, baseUrl + "/certificate/_search",
-				customHeaders);
+				customHeaders, queryParameters);
 		ResponseEntity<JsonResponseDataCertificate> response = null;
 		try {
 			response = template.exchange(request, JsonResponseDataCertificate.class);

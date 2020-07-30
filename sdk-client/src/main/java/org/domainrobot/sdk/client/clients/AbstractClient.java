@@ -4,12 +4,14 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.domainrobot.sdk.client.JsonUtils;
 import org.domainrobot.sdk.models.DomainRobotHeaders;
 import org.domainrobot.sdk.models.DomainrobotApiException;
 import org.domainrobot.sdk.models.generated.JsonResponseData;
+import org.domainrobot.sdk.models.generated.Query;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.RequestEntity;
@@ -92,6 +94,39 @@ public class AbstractClient {
 	 */
 	public <T> RequestEntity<T> buildRequestEntity(T body, HttpMethod method, String url,
 			Map<String, String> customHeaders) {
+		return buildRequestEntity(body, method, url, customHeaders, null);
+	}
+
+	/**
+	 * Builds a RequestEntity for the RestTemplate.
+	 * 
+	 * @param method
+	 * @param url
+	 * @param customHeaders
+	 * @return Returns a RequestEntity with the type of the given body.
+	 */
+	public <T> RequestEntity<T> buildRequestEntity(HttpMethod method, String url, Map<String, String> customHeaders) {
+		return buildRequestEntity(null, method, url, customHeaders, null);
+	}
+
+	/**
+	 * Builds a RequestEntity for the RestTemplate.
+	 * 
+	 * @param <T>
+	 * @param body
+	 * @param method
+	 * @param url
+	 * @param customHeaders
+	 * @param queryParameters
+	 * @return Returns a RequestEntity with the type of the given body.
+	 */
+	public <T> RequestEntity<T> buildRequestEntity(T body, HttpMethod method, String url,
+			Map<String, String> customHeaders, Map<String, Object> queryParameters) {
+
+		if (queryParameters != null) {
+			url = url + buildQueryParameterString(queryParameters);
+		}
+
 		URI uri = null;
 		try {
 			uri = new URI(url);
@@ -107,19 +142,6 @@ public class AbstractClient {
 		} else {
 			return new RequestEntity<T>(body, headers, method, uri);
 		}
-	}
-
-	/**
-	 * Builds a RequestEntity for the RestTemplate.
-	 * 
-	 * @param <T>
-	 * @param method
-	 * @param url
-	 * @param customHeaders
-	 * @return Returns a RequestEntity with the type of the given body.
-	 */
-	public <T> RequestEntity<T> buildRequestEntity(HttpMethod method, String url, Map<String, String> customHeaders) {
-		return buildRequestEntity(null, method, url, customHeaders);
 	}
 
 	public void handleException(HttpClientErrorException e) throws DomainrobotApiException {
@@ -141,4 +163,35 @@ public class AbstractClient {
 
 	}
 
+	/**
+	 * 
+	 * @param queryParameters
+	 * @return All query parameters as a string
+	 */
+	public String buildQueryParameterString(Map<String, Object> queryParameters) {
+		StringBuffer sb = new StringBuffer();
+		for (String f : queryParameters.keySet()) {
+			if (sb.length() == 0) {
+				sb.append("?");
+			}
+			Object o = queryParameters.get(f);
+			if (o instanceof List<?>) {
+				List<String> values = (List<String>) o;
+				for (String s : values) {
+					if (sb.length() == 1) {
+						sb.append(f).append("=").append(s);
+					} else {
+						sb.append("&").append(f).append("=").append(s);
+					}
+				}
+			} else {
+				if (sb.length() == 1) {
+					sb.append(f).append("=").append(queryParameters.get(f));
+				} else {
+					sb.append("&").append(f).append("=").append(queryParameters.get(f));
+				}
+			}
+		}
+		return sb.toString();
+	}
 }

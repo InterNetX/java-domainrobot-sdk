@@ -152,9 +152,10 @@ public class ZoneClient extends AbstractClient {
      * @return List of Zone
      * @throws DomainrobotApiException
      */
-    public List<Zone> list(Query body, Map<String, String> customHeaders) throws DomainrobotApiException {
+    public List<Zone> list(Query body, Map<String, String> customHeaders, Map<String, Object> queryParameters)
+            throws DomainrobotApiException {
         RequestEntity<Query> request = buildRequestEntity(body, HttpMethod.GET, baseUrl + "/zone/_search",
-                customHeaders);
+                customHeaders, queryParameters);
         ResponseEntity<JsonResponseDataZone> response = null;
         try {
             response = template.exchange(request, JsonResponseDataZone.class);

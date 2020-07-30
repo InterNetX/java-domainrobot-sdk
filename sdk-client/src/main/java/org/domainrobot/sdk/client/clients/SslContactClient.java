@@ -142,9 +142,10 @@ public class SslContactClient extends AbstractClient {
      * @return List of SslContact
      * @throws DomainrobotApiException
      */
-    public List<SslContact> list(Query body, Map<String, String> customHeaders) throws DomainrobotApiException {
+    public List<SslContact> list(Query body, Map<String, String> customHeaders, Map<String, Object> queryParameters)
+            throws DomainrobotApiException {
         RequestEntity<Query> request = buildRequestEntity(body, HttpMethod.GET, baseUrl + "/sslcontact/_search",
-                customHeaders);
+                customHeaders, queryParameters);
         ResponseEntity<JsonResponseDataSslContact> response = null;
         try {
             response = template.exchange(request, JsonResponseDataSslContact.class);

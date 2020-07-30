@@ -136,9 +136,10 @@ public class TrustedApplicationClient extends AbstractClient {
      * @return List of TrustedApplication
      * @throws DomainrobotApiException
      */
-    public List<TrustedApplication> list(Query body, Map<String, String> customHeaders) throws DomainrobotApiException {
+    public List<TrustedApplication> list(Query body, Map<String, String> customHeaders,
+            Map<String, Object> queryParameters) throws DomainrobotApiException {
         RequestEntity<Query> request = buildRequestEntity(body, HttpMethod.GET, baseUrl + "/trustedapp/_search",
-                customHeaders);
+                customHeaders, queryParameters);
         ResponseEntity<JsonResponseDataTrustedApplication> response = null;
         try {
             response = template.exchange(request, JsonResponseDataTrustedApplication.class);
