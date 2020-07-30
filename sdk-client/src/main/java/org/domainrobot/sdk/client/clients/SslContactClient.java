@@ -42,7 +42,7 @@ public class SslContactClient extends AbstractClient {
      */
     public SslContact create(SslContact body, Map<String, String> customHeaders)
             throws DomainrobotApiException, Exception {
-        RequestEntity<SslContact> request = buildRequestEntity(body, HttpMethod.POST, baseUrl + "/sslcontact",
+        RequestEntity<String> request = buildRequestEntity(body, HttpMethod.POST, baseUrl + "/sslcontact",
                 customHeaders);
         ResponseEntity<JsonResponseDataSslContact> response = null;
         try {
@@ -65,7 +65,7 @@ public class SslContactClient extends AbstractClient {
         if (body.getId() == null) {
             throw new IllegalArgumentException("Field SslContact.id is missing.");
         }
-        RequestEntity<SslContact> request = buildRequestEntity(body, HttpMethod.PUT,
+        RequestEntity<String> request = buildRequestEntity(body, HttpMethod.PUT,
                 baseUrl + "/sslcontact/" + body.getId().toString(), customHeaders);
         ResponseEntity<JsonResponseDataSslContact> response = null;
         try {
@@ -83,7 +83,7 @@ public class SslContactClient extends AbstractClient {
      * @throws DomainrobotApiException
      */
     public void delete(int id, Map<String, String> customHeaders) throws DomainrobotApiException, Exception {
-        RequestEntity<SslContact> request = buildRequestEntity(HttpMethod.DELETE, baseUrl + "/sslcontact/" + id,
+        RequestEntity<String> request = buildRequestEntity(HttpMethod.DELETE, baseUrl + "/sslcontact/" + id,
                 customHeaders);
         try {
             template.exchange(request, JsonResponseDataJsonNoData.class);
@@ -101,7 +101,7 @@ public class SslContactClient extends AbstractClient {
      * @throws DomainrobotApiException
      */
     public SslContact info(int id, Map<String, String> customHeaders) throws DomainrobotApiException, Exception {
-        RequestEntity<SslContact> request = buildRequestEntity(HttpMethod.GET, baseUrl + "/sslcontact/" + id,
+        RequestEntity<String> request = buildRequestEntity(HttpMethod.GET, baseUrl + "/sslcontact/" + id,
                 customHeaders);
         ResponseEntity<JsonResponseDataSslContact> response = null;
         try {
@@ -146,7 +146,7 @@ public class SslContactClient extends AbstractClient {
      */
     public List<SslContact> list(Query body, Map<String, String> customHeaders, Map<String, Object> queryParameters)
             throws DomainrobotApiException, Exception {
-        RequestEntity<Query> request = buildRequestEntity(body, HttpMethod.GET, baseUrl + "/sslcontact/_search",
+        RequestEntity<String> request = buildRequestEntity(body, HttpMethod.GET, baseUrl + "/sslcontact/_search",
                 customHeaders, queryParameters);
         ResponseEntity<JsonResponseDataSslContact> response = null;
         try {

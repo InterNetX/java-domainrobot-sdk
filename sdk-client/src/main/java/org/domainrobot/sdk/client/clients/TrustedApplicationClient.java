@@ -43,7 +43,7 @@ public class TrustedApplicationClient extends AbstractClient {
      */
     public TrustedApplication create(TrustedApplication body, Map<String, String> customHeaders)
             throws DomainrobotApiException, Exception {
-        RequestEntity<TrustedApplication> request = buildRequestEntity(body, HttpMethod.POST, baseUrl + "/trustedapp",
+        RequestEntity<String> request = buildRequestEntity(body, HttpMethod.POST, baseUrl + "/trustedapp",
                 customHeaders);
         ResponseEntity<JsonResponseDataTrustedApplication> response = null;
         try {
@@ -66,7 +66,7 @@ public class TrustedApplicationClient extends AbstractClient {
         if (body.getUuid() == null) {
             throw new IllegalArgumentException("Field TrustedApplication.uuid is missing.");
         }
-        RequestEntity<TrustedApplication> request = buildRequestEntity(body, HttpMethod.PUT,
+        RequestEntity<String> request = buildRequestEntity(body, HttpMethod.PUT,
                 baseUrl + "/trustedapp/" + body.getUuid().toString(), customHeaders);
         ResponseEntity<JsonResponseDataTrustedApplication> response = null;
         try {
@@ -84,8 +84,8 @@ public class TrustedApplicationClient extends AbstractClient {
      * @throws DomainrobotApiException
      */
     public void delete(String uuid, Map<String, String> customHeaders) throws DomainrobotApiException, Exception {
-        RequestEntity<TrustedApplication> request = buildRequestEntity(HttpMethod.DELETE,
-                baseUrl + "/trustedapp/" + uuid, customHeaders);
+        RequestEntity<String> request = buildRequestEntity(HttpMethod.DELETE, baseUrl + "/trustedapp/" + uuid,
+                customHeaders);
         try {
             template.exchange(request, JsonResponseDataJsonNoData.class);
         } catch (Exception e) {
@@ -103,7 +103,7 @@ public class TrustedApplicationClient extends AbstractClient {
      */
     public TrustedApplication info(String uuid, Map<String, String> customHeaders)
             throws DomainrobotApiException, Exception {
-        RequestEntity<TrustedApplication> request = buildRequestEntity(HttpMethod.GET, baseUrl + "/trustedapp/" + uuid,
+        RequestEntity<String> request = buildRequestEntity(HttpMethod.GET, baseUrl + "/trustedapp/" + uuid,
                 customHeaders);
         ResponseEntity<JsonResponseDataTrustedApplication> response = null;
         try {
@@ -139,7 +139,7 @@ public class TrustedApplicationClient extends AbstractClient {
      */
     public List<TrustedApplication> list(Query body, Map<String, String> customHeaders,
             Map<String, Object> queryParameters) throws DomainrobotApiException, Exception {
-        RequestEntity<Query> request = buildRequestEntity(body, HttpMethod.GET, baseUrl + "/trustedapp/_search",
+        RequestEntity<String> request = buildRequestEntity(body, HttpMethod.GET, baseUrl + "/trustedapp/_search",
                 customHeaders, queryParameters);
         ResponseEntity<JsonResponseDataTrustedApplication> response = null;
         try {

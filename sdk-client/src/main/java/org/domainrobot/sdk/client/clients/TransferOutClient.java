@@ -68,7 +68,7 @@ public class TransferOutClient extends AbstractClient {
      */
     public List<TransferOut> list(Query body, Map<String, String> customHeaders, Map<String, Object> queryParameters)
             throws DomainrobotApiException, Exception {
-        RequestEntity<Query> request = buildRequestEntity(body, HttpMethod.GET, baseUrl + "/transferout/_search",
+        RequestEntity<String> request = buildRequestEntity(body, HttpMethod.GET, baseUrl + "/transferout/_search",
                 customHeaders, queryParameters);
         ResponseEntity<JsonResponseDataTransferOut> response = null;
         try {
@@ -94,7 +94,7 @@ public class TransferOutClient extends AbstractClient {
             transformedAnswer = "nack";
         }
 
-        RequestEntity<PollMessage> request = buildRequestEntity(HttpMethod.PUT,
+        RequestEntity<String> request = buildRequestEntity(HttpMethod.PUT,
                 baseUrl + "/transferout/" + domain + "/" + transformedAnswer, customHeaders);
 
         try {

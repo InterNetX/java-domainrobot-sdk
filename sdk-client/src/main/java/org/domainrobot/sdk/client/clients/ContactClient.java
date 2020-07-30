@@ -42,7 +42,7 @@ public class ContactClient extends AbstractClient {
      * @throws DomainrobotApiException
      */
     public Contact create(Contact body, Map<String, String> customHeaders) throws DomainrobotApiException, Exception {
-        RequestEntity<Contact> request = buildRequestEntity(body, HttpMethod.POST, baseUrl + "/contact", customHeaders);
+        RequestEntity<String> request = buildRequestEntity(body, HttpMethod.POST, baseUrl + "/contact", customHeaders);
         ResponseEntity<JsonResponseDataContact> response = null;
         try {
             response = template.exchange(request, JsonResponseDataContact.class);
@@ -63,7 +63,7 @@ public class ContactClient extends AbstractClient {
         if (body.getId() == null) {
             throw new IllegalArgumentException("Field Contact.id is missing.");
         }
-        RequestEntity<Contact> request = buildRequestEntity(body, HttpMethod.PUT,
+        RequestEntity<String> request = buildRequestEntity(body, HttpMethod.PUT,
                 baseUrl + "/contact/" + body.getId().toString(), customHeaders);
         ResponseEntity<JsonResponseDataContact> response = null;
         try {
@@ -81,7 +81,7 @@ public class ContactClient extends AbstractClient {
      * @throws DomainrobotApiException
      */
     public void delete(int id, Map<String, String> customHeaders) throws DomainrobotApiException, Exception {
-        RequestEntity<Contact> request = buildRequestEntity(HttpMethod.DELETE, baseUrl + "/contact/" + id,
+        RequestEntity<String> request = buildRequestEntity(HttpMethod.DELETE, baseUrl + "/contact/" + id,
                 customHeaders);
         try {
             template.exchange(request, JsonResponseDataJsonNoData.class);
@@ -99,7 +99,7 @@ public class ContactClient extends AbstractClient {
      * @throws DomainrobotApiException
      */
     public Contact info(int id, Map<String, String> customHeaders) throws DomainrobotApiException, Exception {
-        RequestEntity<Contact> request = buildRequestEntity(HttpMethod.GET, baseUrl + "/contact/" + id, customHeaders);
+        RequestEntity<String> request = buildRequestEntity(HttpMethod.GET, baseUrl + "/contact/" + id, customHeaders);
         ResponseEntity<JsonResponseDataContact> response = null;
         try {
             response = template.exchange(request, JsonResponseDataContact.class);
@@ -148,7 +148,7 @@ public class ContactClient extends AbstractClient {
     public List<Contact> list(Query body, Map<String, String> customHeaders, Map<String, Object> queryParameters)
             throws DomainrobotApiException, Exception {
 
-        RequestEntity<Query> request = buildRequestEntity(body, HttpMethod.POST, baseUrl + "/contact/_search",
+        RequestEntity<String> request = buildRequestEntity(body, HttpMethod.POST, baseUrl + "/contact/_search",
                 customHeaders, queryParameters);
         ResponseEntity<JsonResponseDataContact> response = null;
         try {

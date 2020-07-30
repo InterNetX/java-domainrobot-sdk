@@ -21,9 +21,13 @@ public class JsonUtils {
 		try {
 			T t = MAPPER.readValue(binaryData, cls);// InvalidFormatException
 			return t;
-		} catch(IOException e) {
+		} catch (IOException e) {
 			throw e;
 		}
+	}
+
+	public static String serialize(Object value) throws IOException {
+		return MAPPER.writeValueAsString(value);
 	}
 
 	public static ObjectMapper create() {
@@ -44,14 +48,13 @@ public class JsonUtils {
 		// mapper.registerModule(new JavaTimeModule());
 		mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
 
-		mapper.setVisibility(
-			mapper.getSerializationConfig().getDefaultVisibilityChecker()
-					// forces to set @JsonProperty
-					.withFieldVisibility(JsonAutoDetect.Visibility.NONE)
-					.withGetterVisibility(JsonAutoDetect.Visibility.NONE)
-					.withSetterVisibility(JsonAutoDetect.Visibility.NONE)
-					.withCreatorVisibility(JsonAutoDetect.Visibility.NONE)
-					.withIsGetterVisibility(JsonAutoDetect.Visibility.NONE));
+		mapper.setVisibility(mapper.getSerializationConfig().getDefaultVisibilityChecker()
+				// forces to set @JsonProperty
+				.withFieldVisibility(JsonAutoDetect.Visibility.NONE)
+				.withGetterVisibility(JsonAutoDetect.Visibility.NONE)
+				.withSetterVisibility(JsonAutoDetect.Visibility.NONE)
+				.withCreatorVisibility(JsonAutoDetect.Visibility.NONE)
+				.withIsGetterVisibility(JsonAutoDetect.Visibility.NONE));
 
 		return mapper;
 	}

@@ -44,7 +44,7 @@ public class DomainClient extends AbstractClient {
      * @throws DomainrobotApiException
      */
     public ObjectJob create(Domain body, Map<String, String> customHeaders) throws DomainrobotApiException, Exception {
-        RequestEntity<Domain> request = buildRequestEntity(body, HttpMethod.POST, baseUrl + "/domain", customHeaders);
+        RequestEntity<String> request = buildRequestEntity(body, HttpMethod.POST, baseUrl + "/domain", customHeaders);
         ResponseEntity<JsonResponseDataObjectJob> response = null;
         try {
             response = template.exchange(request, JsonResponseDataObjectJob.class);
@@ -65,7 +65,7 @@ public class DomainClient extends AbstractClient {
         if (body.getName() == null) {
             throw new IllegalArgumentException("Field Domain.name is missing.");
         }
-        RequestEntity<Domain> request = buildRequestEntity(body, HttpMethod.PUT, baseUrl + "/domain/" + body.getName(),
+        RequestEntity<String> request = buildRequestEntity(body, HttpMethod.PUT, baseUrl + "/domain/" + body.getName(),
                 customHeaders);
         ResponseEntity<JsonResponseDataObjectJob> response = null;
         try {
@@ -84,7 +84,7 @@ public class DomainClient extends AbstractClient {
      * @throws DomainrobotApiException
      */
     public Domain info(String domain, Map<String, String> customHeaders) throws DomainrobotApiException, Exception {
-        RequestEntity<Domain> request = buildRequestEntity(HttpMethod.GET, baseUrl + "/domain/" + domain,
+        RequestEntity<String> request = buildRequestEntity(HttpMethod.GET, baseUrl + "/domain/" + domain,
                 customHeaders);
         ResponseEntity<JsonResponseDataDomain> response = null;
         try {
@@ -130,7 +130,7 @@ public class DomainClient extends AbstractClient {
      */
     public List<Domain> list(Query body, Map<String, String> customHeaders, Map<String, Object> queryParameters)
             throws DomainrobotApiException, Exception {
-        RequestEntity<Query> request = buildRequestEntity(body, HttpMethod.POST, baseUrl + "/domain/_search",
+        RequestEntity<String> request = buildRequestEntity(body, HttpMethod.POST, baseUrl + "/domain/_search",
                 customHeaders, queryParameters);
         ResponseEntity<JsonResponseDataDomain> response = null;
         try {
@@ -150,7 +150,7 @@ public class DomainClient extends AbstractClient {
      */
     public Domain createAuthinfo1(String domain, Map<String, String> customHeaders)
             throws DomainrobotApiException, Exception {
-        RequestEntity<Domain> request = buildRequestEntity(HttpMethod.POST,
+        RequestEntity<String> request = buildRequestEntity(HttpMethod.POST,
                 baseUrl + "/domain/" + domain + "/_authinfo1", customHeaders);
         ResponseEntity<JsonResponseDataDomain> response = null;
         try {
@@ -170,7 +170,7 @@ public class DomainClient extends AbstractClient {
      */
     public void deleteAuthinfo1(String domain, Map<String, String> customHeaders)
             throws DomainrobotApiException, Exception {
-        RequestEntity<Domain> request = buildRequestEntity(HttpMethod.DELETE,
+        RequestEntity<String> request = buildRequestEntity(HttpMethod.DELETE,
                 baseUrl + "/domain/" + domain + "/_authinfo1", customHeaders);
         try {
             template.exchange(request, JsonResponseDataDomain.class);
@@ -189,7 +189,7 @@ public class DomainClient extends AbstractClient {
      */
     public void createAuthinfo2(String domain, Map<String, String> customHeaders)
             throws DomainrobotApiException, Exception {
-        RequestEntity<Domain> request = buildRequestEntity(HttpMethod.POST,
+        RequestEntity<String> request = buildRequestEntity(HttpMethod.POST,
                 baseUrl + "/domain/" + domain + "/_authinfo2", customHeaders);
         try {
             template.exchange(request, JsonResponseDataDomain.class);
@@ -210,7 +210,7 @@ public class DomainClient extends AbstractClient {
         if (body.getName() == null) {
             throw new IllegalArgumentException("Field Domain.name is missing.");
         }
-        RequestEntity<Domain> request = buildRequestEntity(body, HttpMethod.POST,
+        RequestEntity<String> request = buildRequestEntity(body, HttpMethod.POST,
                 baseUrl + "/domain/" + body.getName() + "/_renew", customHeaders);
         ResponseEntity<JsonResponseDataObjectJob> response = null;
         try {
@@ -230,7 +230,7 @@ public class DomainClient extends AbstractClient {
      */
     public ObjectJob transfer(Domain body, Map<String, String> customHeaders)
             throws DomainrobotApiException, Exception {
-        RequestEntity<Domain> request = buildRequestEntity(body, HttpMethod.POST, baseUrl + "/domain/_transfer",
+        RequestEntity<String> request = buildRequestEntity(body, HttpMethod.POST, baseUrl + "/domain/_transfer",
                 customHeaders);
         ResponseEntity<JsonResponseDataObjectJob> response = null;
         try {
@@ -253,7 +253,7 @@ public class DomainClient extends AbstractClient {
         if (body.getName() == null) {
             throw new IllegalArgumentException("Field Domain.name is missing.");
         }
-        RequestEntity<Domain> request = buildRequestEntity(body, HttpMethod.PUT,
+        RequestEntity<String> request = buildRequestEntity(body, HttpMethod.PUT,
                 baseUrl + "/domain/" + body.getName() + "/_statusUpdate", customHeaders);
         ResponseEntity<JsonResponseDataObjectJob> response = null;
         try {
@@ -308,7 +308,7 @@ public class DomainClient extends AbstractClient {
      */
     public List<DomainRestore> restoreList(Query body, Map<String, String> customHeaders,
             Map<String, Object> queryParameters) throws DomainrobotApiException, Exception {
-        RequestEntity<Query> request = buildRequestEntity(body, HttpMethod.POST, baseUrl + "/domain/restore/_search",
+        RequestEntity<String> request = buildRequestEntity(body, HttpMethod.POST, baseUrl + "/domain/restore/_search",
                 customHeaders, queryParameters);
         ResponseEntity<JsonResponseDataDomainRestore> response = null;
         try {
@@ -330,7 +330,7 @@ public class DomainClient extends AbstractClient {
         if (body.getName() == null) {
             throw new IllegalArgumentException("Field Domain.name is missing.");
         }
-        RequestEntity<Domain> request = buildRequestEntity(body, HttpMethod.PUT,
+        RequestEntity<String> request = buildRequestEntity(body, HttpMethod.PUT,
                 baseUrl + "/domain/" + body.getName() + "/_restore", customHeaders);
         ResponseEntity<JsonResponseDataObjectJob> response = null;
         try {

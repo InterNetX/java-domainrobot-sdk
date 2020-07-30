@@ -53,8 +53,8 @@ public class DomainStudioClient extends AbstractClient {
 	 */
 	public List<DomainEnvelope> search(DomainEnvelopeSearchRequest body, Map<String, String> customHeaders)
 			throws DomainrobotApiException, Exception {
-		RequestEntity<DomainEnvelopeSearchRequest> request = buildRequestEntity(body, HttpMethod.POST,
-				baseUrl + "/domainstudio", customHeaders);
+		RequestEntity<String> request = buildRequestEntity(body, HttpMethod.POST, baseUrl + "/domainstudio",
+				customHeaders);
 		ResponseEntity<JsonResponseDataDomainEnvelope> response = null;
 		try {
 			response = template.exchange(request, JsonResponseDataDomainEnvelope.class);

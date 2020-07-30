@@ -87,15 +87,15 @@ public class AbstractClient {
 	/**
 	 * Builds a RequestEntity for the RestTemplate.
 	 * 
-	 * @param <T>
 	 * @param body
 	 * @param method
 	 * @param url
 	 * @param customHeaders
 	 * @return Returns a RequestEntity with the type of the given body.
+	 * @throws IOException
 	 */
-	public <T> RequestEntity<T> buildRequestEntity(T body, HttpMethod method, String url,
-			Map<String, String> customHeaders) {
+	public RequestEntity<String> buildRequestEntity(Object body, HttpMethod method, String url,
+			Map<String, String> customHeaders) throws IOException {
 		return buildRequestEntity(body, method, url, customHeaders, null);
 	}
 
@@ -106,24 +106,26 @@ public class AbstractClient {
 	 * @param url
 	 * @param customHeaders
 	 * @return Returns a RequestEntity with the type of the given body.
+	 * @throws IOException
 	 */
-	public <T> RequestEntity<T> buildRequestEntity(HttpMethod method, String url, Map<String, String> customHeaders) {
+	public RequestEntity<String> buildRequestEntity(HttpMethod method, String url, Map<String, String> customHeaders)
+			throws IOException {
 		return buildRequestEntity(null, method, url, customHeaders, null);
 	}
 
 	/**
 	 * Builds a RequestEntity for the RestTemplate.
 	 * 
-	 * @param <T>
 	 * @param body
 	 * @param method
 	 * @param url
 	 * @param customHeaders
 	 * @param queryParameters
 	 * @return Returns a RequestEntity with the type of the given body.
+	 * @throws IOException
 	 */
-	public <T> RequestEntity<T> buildRequestEntity(T body, HttpMethod method, String url,
-			Map<String, String> customHeaders, Map<String, Object> queryParameters) {
+	public RequestEntity<String> buildRequestEntity(Object body, HttpMethod method, String url,
+			Map<String, String> customHeaders, Map<String, Object> queryParameters) throws IOException {
 
 		if (queryParameters != null) {
 			url = url + buildQueryParameterString(queryParameters);
@@ -140,16 +142,20 @@ public class AbstractClient {
 		headers.setAll(mergeHeaders(customHeaders));
 
 		if (body == null) {
-			return new RequestEntity<T>(headers, method, uri);
+			return new RequestEntity<String>(headers, method, uri);
 		} else {
-			return new RequestEntity<T>(body, headers, method, uri);
+			try {
+				return new RequestEntity<String>(JsonUtils.serialize(body), headers, method, uri);
+			} catch (IOException e) {
+				throw e;
+			}
 		}
 	}
 
 	public void handleException(Exception e) throws DomainrobotApiException, Exception, Exception {
 		// Handle HttpClientErrorException and HttpServerErrorException
 		if (e instanceof HttpStatusCodeException) {
-			HttpClientErrorException ex = (HttpClientErrorException) e;
+			HttpStatusCodeException ex = (HttpStatusCodeException) e;
 			String bodyAsString = ex.getResponseBodyAsString();
 			String message = "";
 			String errorCode = "";
