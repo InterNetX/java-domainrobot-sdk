@@ -6,8 +6,10 @@ import java.util.Map;
 import org.domainrobot.sdk.models.DomainrobotApiException;
 import org.domainrobot.sdk.models.generated.Domain;
 import org.domainrobot.sdk.models.generated.DomainRestore;
+import org.domainrobot.sdk.models.generated.Job;
 import org.domainrobot.sdk.models.generated.JsonResponseDataDomain;
 import org.domainrobot.sdk.models.generated.JsonResponseDataDomainRestore;
+import org.domainrobot.sdk.models.JsonResponseDataJob;
 import org.domainrobot.sdk.models.generated.JsonResponseDataObjectJob;
 import org.domainrobot.sdk.models.generated.ObjectJob;
 import org.domainrobot.sdk.models.generated.Query;
@@ -40,14 +42,14 @@ public class DomainClient extends AbstractClient {
      * 
      * Sends a Domain create request.
      * 
-     * @return ObjectJob
+     * @return Job
      * @throws DomainrobotApiException
      */
-    public ObjectJob create(Domain body, Map<String, String> customHeaders) throws DomainrobotApiException, Exception {
+    public Job create(Domain body, Map<String, String> customHeaders) throws DomainrobotApiException, Exception {
         RequestEntity<String> request = buildRequestEntity(body, HttpMethod.POST, baseUrl + "/domain", customHeaders);
-        ResponseEntity<JsonResponseDataObjectJob> response = null;
+        ResponseEntity<JsonResponseDataJob> response = null;
         try {
-            response = template.exchange(request, JsonResponseDataObjectJob.class);
+            response = template.exchange(request, JsonResponseDataJob.class);
         } catch (Exception e) {
             handleException(e);
         }

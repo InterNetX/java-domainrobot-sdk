@@ -6,11 +6,11 @@ import java.util.Map;
 import org.domainrobot.sdk.models.DomainrobotApiException;
 import org.domainrobot.sdk.models.generated.Certificate;
 import org.domainrobot.sdk.models.generated.CertificateData;
+import org.domainrobot.sdk.models.generated.Job;
 import org.domainrobot.sdk.models.generated.JsonResponseDataCertificate;
 import org.domainrobot.sdk.models.generated.JsonResponseDataCertificateData;
+import org.domainrobot.sdk.models.JsonResponseDataJob;
 import org.domainrobot.sdk.models.generated.JsonResponseDataJsonNoData;
-import org.domainrobot.sdk.models.generated.JsonResponseDataObjectJob;
-import org.domainrobot.sdk.models.generated.ObjectJob;
 import org.domainrobot.sdk.models.generated.Query;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.RequestEntity;
@@ -94,16 +94,15 @@ public class CertificateClient extends AbstractClient {
 	 * generate the necessary DCV data. Returns a Job with an id that can be used
 	 * for polling.
 	 * 
-	 * @return ObjectJob
+	 * @return Job
 	 * @throws DomainrobotApiException
 	 */
-	public ObjectJob create(Certificate body, Map<String, String> customHeaders)
-			throws DomainrobotApiException, Exception {
+	public Job create(Certificate body, Map<String, String> customHeaders) throws DomainrobotApiException, Exception {
 		RequestEntity<String> request = buildRequestEntity(body, HttpMethod.POST, baseUrl + "/certificate",
 				customHeaders);
-		ResponseEntity<JsonResponseDataObjectJob> response = null;
+		ResponseEntity<JsonResponseDataJob> response = null;
 		try {
-			response = template.exchange(request, JsonResponseDataObjectJob.class);
+			response = template.exchange(request, JsonResponseDataJob.class);
 		} catch (Exception e) {
 			handleException(e);
 		}
@@ -116,21 +115,21 @@ public class CertificateClient extends AbstractClient {
 	 * generate the necessary DCV data. Returns a Job with an id that can be used
 	 * for polling.
 	 * 
-	 * @return ObjectJob
+	 * @return Job
 	 * @throws DomainrobotApiException
 	 * @throws IllegalArgumentException If the id field of the body parameter is
 	 *                                  missing.
 	 */
-	public ObjectJob reissue(Certificate body, Map<String, String> customHeaders)
+	public Job reissue(Certificate body, Map<String, String> customHeaders)
 			throws DomainrobotApiException, IllegalArgumentException, Exception {
 		if (body.getId() == null) {
 			throw new IllegalArgumentException("Field Certificate.id is missing.");
 		}
 		RequestEntity<String> request = buildRequestEntity(body, HttpMethod.PUT,
 				baseUrl + "/certificate/" + body.getId().toString(), customHeaders);
-		ResponseEntity<JsonResponseDataObjectJob> response = null;
+		ResponseEntity<JsonResponseDataJob> response = null;
 		try {
-			response = template.exchange(request, JsonResponseDataObjectJob.class);
+			response = template.exchange(request, JsonResponseDataJob.class);
 		} catch (Exception e) {
 			handleException(e);
 		}
@@ -144,12 +143,12 @@ public class CertificateClient extends AbstractClient {
 	 * 
 	 * @throws DomainrobotApiException
 	 */
-	public ObjectJob delete(int id, Map<String, String> customHeaders) throws DomainrobotApiException, Exception {
+	public Job delete(int id, Map<String, String> customHeaders) throws DomainrobotApiException, Exception {
 		RequestEntity<String> request = buildRequestEntity(HttpMethod.DELETE, baseUrl + "/certificate/" + id,
 				customHeaders);
-		ResponseEntity<JsonResponseDataObjectJob> response = null;
+		ResponseEntity<JsonResponseDataJob> response = null;
 		try {
-			response = template.exchange(request, JsonResponseDataObjectJob.class);
+			response = template.exchange(request, JsonResponseDataJob.class);
 		} catch (Exception e) {
 			handleException(e);
 		}
@@ -222,21 +221,21 @@ public class CertificateClient extends AbstractClient {
 	 * generate the necessary DCV data. Returns a Job with an id that can be used
 	 * for polling.
 	 * 
-	 * @return ObjectJob
+	 * @return Job
 	 * @throws DomainrobotApiException
 	 * @throws IllegalArgumentException If the id field of the body parameter is
 	 *                                  missing.
 	 */
-	public ObjectJob renew(Certificate body, Map<String, String> customHeaders)
+	public Job renew(Certificate body, Map<String, String> customHeaders)
 			throws DomainrobotApiException, IllegalArgumentException, Exception {
 		if (body.getId() == null) {
 			throw new IllegalArgumentException("Field Certificate.id is missing.");
 		}
 		RequestEntity<String> request = buildRequestEntity(body, HttpMethod.PUT,
 				baseUrl + "/certificate/" + body.getId().toString() + "/_renew", customHeaders);
-		ResponseEntity<JsonResponseDataObjectJob> response = null;
+		ResponseEntity<JsonResponseDataJob> response = null;
 		try {
-			response = template.exchange(request, JsonResponseDataObjectJob.class);
+			response = template.exchange(request, JsonResponseDataJob.class);
 		} catch (Exception e) {
 			handleException(e);
 		}
