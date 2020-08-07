@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.2.5] - 2020-08-07
+
+* Improved JSON Mapping for all operations that create an asynchronous job (#14)
+
 ## [0.2.4] - 2020-07-30
 
 * Improved exception handling (#13)
