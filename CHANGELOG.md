@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.2.6] - 2020-08-21
+
+* Fixed NPE in ZoneClient (#15)
+
 ## [0.2.5] - 2020-08-07
 
 * Improved JSON Mapping for all operations that create an asynchronous job (#14)
