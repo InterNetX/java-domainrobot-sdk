@@ -3,6 +3,8 @@ package org.domainrobot.sdk.client.clients;
 import java.util.List;
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.domainrobot.sdk.models.DomainrobotApiException;
 import org.domainrobot.sdk.models.generated.JsonResponseDataJsonNoData;
 import org.domainrobot.sdk.models.generated.JsonResponseDataZone;
@@ -23,6 +25,7 @@ import org.springframework.web.client.RestTemplate;
 public class ZoneClient extends AbstractClient {
 
     RestTemplate template;
+    
 
     public ZoneClient(String userName, String context, String password, String baseUrl, String version,
             RestTemplate template) {
@@ -41,15 +44,13 @@ public class ZoneClient extends AbstractClient {
      * @return Zone
      * @throws DomainrobotApiException
      */
-    public Zone create(Zone body, Map<String, String> customHeaders) throws DomainrobotApiException, Exception {
+    public void create(Zone body, Map<String, String> customHeaders) throws DomainrobotApiException, Exception {
         RequestEntity<String> request = buildRequestEntity(body, HttpMethod.POST, baseUrl + "/zone", customHeaders);
-        ResponseEntity<JsonResponseDataZone> response = null;
         try {
-            response = template.exchange(request, JsonResponseDataZone.class);
+            template.exchange(request, JsonResponseDataZone.class);
         } catch (Exception e) {
             handleException(e);
         }
-        return response.getBody().getData().get(0);
     }
 
     /**
@@ -61,7 +62,7 @@ public class ZoneClient extends AbstractClient {
      * @throws IllegalArgumentException If the origin or virtualNameServer is
      *                                  missing.
      */
-    public Zone update(Zone body, Map<String, String> customHeaders) throws DomainrobotApiException, Exception {
+    public void update(Zone body, Map<String, String> customHeaders) throws DomainrobotApiException, Exception {
         if (body.getOrigin() == null) {
             throw new IllegalArgumentException("Field Zone.origin is missing.");
         }
@@ -70,14 +71,15 @@ public class ZoneClient extends AbstractClient {
         }
         RequestEntity<String> request = buildRequestEntity(body, HttpMethod.PUT,
                 baseUrl + "/zone/" + body.getOrigin() + "/" + body.getVirtualNameServer(), customHeaders);
-        ResponseEntity<JsonResponseDataZone> response = null;
         try {
-            response = template.exchange(request, JsonResponseDataZone.class);
+            template.exchange(request, JsonResponseDataZone.class);
         } catch (Exception e) {
             handleException(e);
         }
-        return response.getBody().getData().get(0);
     }
+
+
+
 
     /**
      * 
