@@ -38,6 +38,8 @@ public class PollClient extends AbstractClient {
      * 
      * The poll system works according to the "First In First Out (FIFO)" principle.
      * 
+     * If there is no poll message to fetch, the method returns null.
+     * 
      * @return PollMessage
      * @throws DomainrobotApiException
      */
@@ -48,6 +50,9 @@ public class PollClient extends AbstractClient {
             response = template.exchange(request, JsonResponseDataPollMessage.class);
         } catch (Exception e) {
             handleException(e);
+        }
+        if(response.getBody().getData() == null ) {
+        	return null;
         }
         return response.getBody().getData().get(0);
     }
