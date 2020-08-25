@@ -63,7 +63,7 @@ public class PollClient extends AbstractClient {
      * 
      * @throws DomainrobotApiException
      */
-    public void confirm(int id, Map<String, String> customHeaders) throws DomainrobotApiException, Exception {
+    public void confirm(long id, Map<String, String> customHeaders) throws DomainrobotApiException, Exception {
         RequestEntity<String> request = buildRequestEntity(HttpMethod.PUT, baseUrl + "/poll/" + id, customHeaders);
 
         try {
