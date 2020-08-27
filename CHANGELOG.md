@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.2.7] - 2020-08-27
+
+* Fixed NPE in PollClient.info() if there is no poll message available(#17)
+* Improved PollClient.info() method to accept a long value instead of integer (#19)
+* Fixed JSON Mapping for all operations on domains that create an asynchronous job (#21)
+
 ## [0.2.6] - 2020-08-21
 
 * Fixed NPE in ZoneClient (#15)

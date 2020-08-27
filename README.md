@@ -42,7 +42,7 @@ Update pom.xml and add the following line to your dependencies.
 <dependency>
     <groupId>org.domainrobot</groupId>
     <artifactId>sdk-client</artifactId>
-    <version>0.2.6</version>
+    <version>0.2.7</version>
 </dependency>
 ```
 
