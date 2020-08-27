@@ -9,14 +9,11 @@ import org.domainrobot.sdk.models.generated.DomainRestore;
 import org.domainrobot.sdk.models.generated.Job;
 import org.domainrobot.sdk.models.generated.JsonResponseDataDomain;
 import org.domainrobot.sdk.models.generated.JsonResponseDataDomainRestore;
-import org.domainrobot.sdk.models.JsonResponseDataJob;
-import org.domainrobot.sdk.models.generated.JsonResponseDataObjectJob;
-import org.domainrobot.sdk.models.generated.ObjectJob;
+import org.domainrobot.sdk.models.generated.JsonResponseDataJob;
 import org.domainrobot.sdk.models.generated.Query;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
 /**
@@ -60,18 +57,18 @@ public class DomainClient extends AbstractClient {
      * 
      * Sends a Domain update request.
      * 
-     * @return ObjectJob
+     * @return Job
      * @throws DomainrobotApiException
      */
-    public ObjectJob update(Domain body, Map<String, String> customHeaders) throws DomainrobotApiException, Exception {
+    public Job update(Domain body, Map<String, String> customHeaders) throws DomainrobotApiException, Exception {
         if (body.getName() == null) {
             throw new IllegalArgumentException("Field Domain.name is missing.");
         }
         RequestEntity<String> request = buildRequestEntity(body, HttpMethod.PUT, baseUrl + "/domain/" + body.getName(),
                 customHeaders);
-        ResponseEntity<JsonResponseDataObjectJob> response = null;
+        ResponseEntity<JsonResponseDataJob> response = null;
         try {
-            response = template.exchange(request, JsonResponseDataObjectJob.class);
+            response = template.exchange(request, JsonResponseDataJob.class);
         } catch (Exception e) {
             handleException(e);
         }
@@ -205,18 +202,18 @@ public class DomainClient extends AbstractClient {
      * 
      * Sends a Domain renew request.
      * 
-     * @return ObjectJob
+     * @return Job
      * @throws DomainrobotApiException
      */
-    public ObjectJob renew(Domain body, Map<String, String> customHeaders) throws DomainrobotApiException, Exception {
+    public Job renew(Domain body, Map<String, String> customHeaders) throws DomainrobotApiException, Exception {
         if (body.getName() == null) {
             throw new IllegalArgumentException("Field Domain.name is missing.");
         }
         RequestEntity<String> request = buildRequestEntity(body, HttpMethod.POST,
                 baseUrl + "/domain/" + body.getName() + "/_renew", customHeaders);
-        ResponseEntity<JsonResponseDataObjectJob> response = null;
+        ResponseEntity<JsonResponseDataJob> response = null;
         try {
-            response = template.exchange(request, JsonResponseDataObjectJob.class);
+            response = template.exchange(request, JsonResponseDataJob.class);
         } catch (Exception e) {
             handleException(e);
         }
@@ -227,16 +224,15 @@ public class DomainClient extends AbstractClient {
      * 
      * Sends a Domain transfer request.
      * 
-     * @return ObjectJob
+     * @return Job
      * @throws DomainrobotApiException
      */
-    public ObjectJob transfer(Domain body, Map<String, String> customHeaders)
-            throws DomainrobotApiException, Exception {
+    public Job transfer(Domain body, Map<String, String> customHeaders) throws DomainrobotApiException, Exception {
         RequestEntity<String> request = buildRequestEntity(body, HttpMethod.POST, baseUrl + "/domain/_transfer",
                 customHeaders);
-        ResponseEntity<JsonResponseDataObjectJob> response = null;
+        ResponseEntity<JsonResponseDataJob> response = null;
         try {
-            response = template.exchange(request, JsonResponseDataObjectJob.class);
+            response = template.exchange(request, JsonResponseDataJob.class);
         } catch (Exception e) {
             handleException(e);
         }
@@ -247,19 +243,18 @@ public class DomainClient extends AbstractClient {
      * 
      * Sends a Domain updateStatus request.
      * 
-     * @return ObjectJob
+     * @return Job
      * @throws DomainrobotApiException
      */
-    public ObjectJob updateStatus(Domain body, Map<String, String> customHeaders)
-            throws DomainrobotApiException, Exception {
+    public Job updateStatus(Domain body, Map<String, String> customHeaders) throws DomainrobotApiException, Exception {
         if (body.getName() == null) {
             throw new IllegalArgumentException("Field Domain.name is missing.");
         }
         RequestEntity<String> request = buildRequestEntity(body, HttpMethod.PUT,
                 baseUrl + "/domain/" + body.getName() + "/_statusUpdate", customHeaders);
-        ResponseEntity<JsonResponseDataObjectJob> response = null;
+        ResponseEntity<JsonResponseDataJob> response = null;
         try {
-            response = template.exchange(request, JsonResponseDataObjectJob.class);
+            response = template.exchange(request, JsonResponseDataJob.class);
         } catch (Exception e) {
             handleException(e);
         }
@@ -325,18 +320,18 @@ public class DomainClient extends AbstractClient {
      * 
      * Sends a Domain restore request.
      * 
-     * @return ObjectJob
+     * @return Job
      * @throws DomainrobotApiException
      */
-    public ObjectJob restore(Domain body, Map<String, String> customHeaders) throws DomainrobotApiException, Exception {
+    public Job restore(Domain body, Map<String, String> customHeaders) throws DomainrobotApiException, Exception {
         if (body.getName() == null) {
             throw new IllegalArgumentException("Field Domain.name is missing.");
         }
         RequestEntity<String> request = buildRequestEntity(body, HttpMethod.PUT,
                 baseUrl + "/domain/" + body.getName() + "/_restore", customHeaders);
-        ResponseEntity<JsonResponseDataObjectJob> response = null;
+        ResponseEntity<JsonResponseDataJob> response = null;
         try {
-            response = template.exchange(request, JsonResponseDataObjectJob.class);
+            response = template.exchange(request, JsonResponseDataJob.class);
         } catch (Exception e) {
             handleException(e);
         }

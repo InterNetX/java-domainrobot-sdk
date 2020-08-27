@@ -9,7 +9,7 @@ import org.domainrobot.sdk.models.generated.CertificateData;
 import org.domainrobot.sdk.models.generated.Job;
 import org.domainrobot.sdk.models.generated.JsonResponseDataCertificate;
 import org.domainrobot.sdk.models.generated.JsonResponseDataCertificateData;
-import org.domainrobot.sdk.models.JsonResponseDataJob;
+import org.domainrobot.sdk.models.generated.JsonResponseDataJob;
 import org.domainrobot.sdk.models.generated.JsonResponseDataJsonNoData;
 import org.domainrobot.sdk.models.generated.Query;
 import org.springframework.http.HttpMethod;
