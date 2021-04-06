@@ -59,19 +59,17 @@ public class ContactClient extends AbstractClient {
      * @return Contact
      * @throws DomainrobotApiException
      */
-    public Contact update(Contact body, Map<String, String> customHeaders) throws DomainrobotApiException, Exception {
+    public void update(Contact body, Map<String, String> customHeaders) throws DomainrobotApiException, Exception {
         if (body.getId() == null) {
             throw new IllegalArgumentException("Field Contact.id is missing.");
         }
         RequestEntity<String> request = buildRequestEntity(body, HttpMethod.PUT,
                 baseUrl + "/contact/" + body.getId().toString(), customHeaders);
-        ResponseEntity<JsonResponseDataContact> response = null;
         try {
-            response = template.exchange(request, JsonResponseDataContact.class);
+            template.exchange(request, JsonResponseDataJsonNoData.class);
         } catch (Exception e) {
             handleException(e);
         }
-        return response.getBody().getData().get(0);
     }
 
     /**
