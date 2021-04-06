@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.2.8] - 2021-04-06
+
+* Changed HTTP method of the zone list call (#23)
+* Changed return value of DomainClient.createAuthinfo1 (#25)
+* Changed return value of ContactClient.update (#26)
+
 ## [0.2.7] - 2020-08-27
 
 * Fixed NPE in PollClient.info() if there is no poll message available(#17)
