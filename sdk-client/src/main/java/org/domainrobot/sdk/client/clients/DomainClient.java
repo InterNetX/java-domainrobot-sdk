@@ -10,6 +10,7 @@ import org.domainrobot.sdk.models.generated.Job;
 import org.domainrobot.sdk.models.generated.JsonResponseDataDomain;
 import org.domainrobot.sdk.models.generated.JsonResponseDataDomainRestore;
 import org.domainrobot.sdk.models.generated.JsonResponseDataJob;
+import org.domainrobot.sdk.models.generated.JsonResponseDataJsonNoData;
 import org.domainrobot.sdk.models.generated.Query;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.RequestEntity;
@@ -147,17 +148,17 @@ public class DomainClient extends AbstractClient {
      * @return Domain
      * @throws DomainrobotApiException
      */
-    public Domain createAuthinfo1(String domain, Map<String, String> customHeaders)
+    public void createAuthinfo1(String domain, Map<String, String> customHeaders)
             throws DomainrobotApiException, Exception {
         RequestEntity<String> request = buildRequestEntity(HttpMethod.POST,
                 baseUrl + "/domain/" + domain + "/_authinfo1", customHeaders);
-        ResponseEntity<JsonResponseDataDomain> response = null;
+
         try {
-            response = template.exchange(request, JsonResponseDataDomain.class);
+            template.exchange(request, JsonResponseDataJsonNoData.class);
         } catch (Exception e) {
             handleException(e);
         }
-        return response.getBody().getData().get(0);
+        return;
     }
 
     /**
