@@ -25,7 +25,6 @@ import org.springframework.web.client.RestTemplate;
 public class ZoneClient extends AbstractClient {
 
     RestTemplate template;
-    
 
     public ZoneClient(String userName, String context, String password, String baseUrl, String version,
             RestTemplate template) {
@@ -77,9 +76,6 @@ public class ZoneClient extends AbstractClient {
             handleException(e);
         }
     }
-
-
-
 
     /**
      * 
@@ -156,7 +152,7 @@ public class ZoneClient extends AbstractClient {
      */
     public List<Zone> list(Query body, Map<String, String> customHeaders, Map<String, Object> queryParameters)
             throws DomainrobotApiException, Exception {
-        RequestEntity<String> request = buildRequestEntity(body, HttpMethod.GET, baseUrl + "/zone/_search",
+        RequestEntity<String> request = buildRequestEntity(body, HttpMethod.POST, baseUrl + "/zone/_search",
                 customHeaders, queryParameters);
         ResponseEntity<JsonResponseDataZone> response = null;
         try {
